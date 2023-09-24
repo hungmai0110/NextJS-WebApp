@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  color: #282727;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: #282727;
+}
+
+a:hover {
+  color: #282727;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.fw-500 {
+  font-weight: 500;
+}
+
+/* color */
+.color-brown {
+  color: #ddba76;
+}
+
+.color-white {
+  color: #fff;
+}
+
+.color-black {
+  color: #282727;
+}
+
+/* 1. Đường dẫn */
+#path {
+  margin-top: 115px;
+  height: 36px;
+  background-color: rgba(220, 220, 220, 0.3);
+  font-size: 14px;
+}
+
+#path i {
+  font-size: 14px;
+}
+
+.path-container {
+  margin-left: 60px;
+}
+
+.path-container p {
+  margin: 6px 0px;
+}
