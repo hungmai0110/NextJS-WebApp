@@ -1,0 +1,28 @@
+#banner {
+  width: 100%;
+  margin-top: 115px;
+  .banner-image {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    position: relative;
+    .follow {
+      position: absolute;
+      top: 70%;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 8px 20px;
+      background: none;
+      color: #282727;
+      background-color: #fff;
+      font-size: 18px;
+      font-weight: 500;
+      border: none;
+      border-radius: 6px;
+      &:hover {
+        background: #282727;
+        color: #fff;
+      }
+    }
+  }
+}
