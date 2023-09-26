@@ -11,8 +11,15 @@ body {
   color: #282727;
 }
 
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+
 img {
-  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 a {
@@ -43,6 +50,16 @@ ul {
 
 .color-black {
   color: #282727;
+}
+
+/* Slick slider */
+.slick-next {
+  right: 10px;
+  background-color: #282727;
+}
+
+.slick-prev {
+  left: 10px;
 }
 
 /* 1. Đường dẫn */

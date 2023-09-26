@@ -2,8 +2,7 @@ import Head from "next/head";
 import { Inter } from "next/font/google";
 import Header from "@components/Header";
 import HomeBanner from "@components/Home/HomeBanner";
-
-const inter = Inter({ subsets: ["latin"] });
+import HomePromoProducts from "@components/Home/HomePromoProducts";
 
 export default function Home() {
   return (
@@ -16,7 +15,8 @@ export default function Home() {
       </Head>
       <main>
         <Header />
-        <HomeBanner/>
+        <HomeBanner />
+        <HomePromoProducts />
       </main>
     </>
   );

@@ -23,76 +23,80 @@ const Header = () => {
         </div>
       </div>
       <div className={styles["header-navbar"]}>
-        <span className={styles["menu-icon"]}>
-          <i className="fa-solid fa-bars"></i>
-        </span>
+        <div className={`${styles["header-container"]} container`}>
+          <span className={styles["menu-icon"]}>
+            <i className="fa-solid fa-bars"></i>
+          </span>
 
-        <div className={styles["logo"]}>
-          <Link href="/">
-            <img src="logo.png" alt="logo" />
-          </Link>
-        </div>
-
-        <ul className={styles["list-menu"]}>
-          <li>
-            <Link href="/">TRANG CHỦ</Link>
-          </li>
-          <li>
-            <Link href="/gioi-thieu">GIỚI THIỆU</Link>
-          </li>
-          <li className={styles["products"]}>
-            <Link href="/san-pham">
-              SẢN PHẨM
-              <span>
-                <i className="fa-solid fa-caret-down"></i>
-              </span>
+          <div className={styles["logo"]}>
+            <Link href="/">
+              <img src="logo.png" alt="logo" />
             </Link>
-            <ul className={styles["type-products"]}>
-              <li>
-                <a href="./main-page/shop.html#vidanam">Ví Da Nam</a>
-              </li>
-              <li>
-                <a href="./main-page/shop.html#vidanu">Ví Da Nữ</a>
-              </li>
-              <li>
-                <a href="./main-page/shop.html#daydadongho">Dây Da Đồng Hồ</a>
-              </li>
-              <li>
-                <a href="./main-page/shop.html#tuidacapda">Túi Da - Cặp Da</a>
-              </li>
-              <li>
-                <a href="./main-page/shop.html#thatlung">Thắt Lưng</a>
-              </li>
-              <li>
-                <a href="./main-page/shop.html#phukien">Phụ Kiện</a>
-              </li>
-              <li>
-                <a href="./main-page/shop.html#cacloaibaoda">Các Loại Bao Da</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <Link href="/tin-tuc">TIN TỨC</Link>
-          </li>
-          <li>
-            <Link href="/lien-he">LIÊN HỆ</Link>
-          </li>
-        </ul>
+          </div>
 
-        <div className={styles["icon-menu"]}>
-          <span className={styles["seach-product"]}>
-            <i className="fa-solid fa-magnifying-glass"></i>
-          </span>
-          <span className={styles["user"]}>
-            <i className="fa-solid fa-circle-user"></i>
-          </span>
-          <div className={styles["cart"]}>
-            <span>
-              <i className="fa-solid fa-cart-shopping"></i>
+          <ul className={styles["list-menu"]}>
+            <li>
+              <Link href="/">TRANG CHỦ</Link>
+            </li>
+            <li>
+              <Link href="/gioi-thieu">GIỚI THIỆU</Link>
+            </li>
+            <li className={styles["products"]}>
+              <Link href="/san-pham">
+                SẢN PHẨM
+                <span>
+                  <i className="fa-solid fa-caret-down"></i>
+                </span>
+              </Link>
+              <ul className={styles["type-products"]}>
+                <li>
+                  <a href="./main-page/shop.html#vidanam">Ví Da Nam</a>
+                </li>
+                <li>
+                  <a href="./main-page/shop.html#vidanu">Ví Da Nữ</a>
+                </li>
+                <li>
+                  <a href="./main-page/shop.html#daydadongho">Dây Da Đồng Hồ</a>
+                </li>
+                <li>
+                  <a href="./main-page/shop.html#tuidacapda">Túi Da - Cặp Da</a>
+                </li>
+                <li>
+                  <a href="./main-page/shop.html#thatlung">Thắt Lưng</a>
+                </li>
+                <li>
+                  <a href="./main-page/shop.html#phukien">Phụ Kiện</a>
+                </li>
+                <li>
+                  <a href="./main-page/shop.html#cacloaibaoda">
+                    Các Loại Bao Da
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <Link href="/tin-tuc">TIN TỨC</Link>
+            </li>
+            <li>
+              <Link href="/lien-he">LIÊN HỆ</Link>
+            </li>
+          </ul>
+
+          <div className={styles["icon-menu"]}>
+            <span className={styles["seach-product"]}>
+              <i className="fa-solid fa-magnifying-glass"></i>
             </span>
-            <span className={styles["cart-count"]}>
-              <p>2</p>
+            <span className={styles["user"]}>
+              <i className="fa-solid fa-circle-user"></i>
             </span>
+            <div className={styles["cart"]}>
+              <span>
+                <i className="fa-solid fa-cart-shopping"></i>
+              </span>
+              <span className={styles["cart-count"]}>
+                <p>2</p>
+              </span>
+            </div>
           </div>
         </div>
       </div>
