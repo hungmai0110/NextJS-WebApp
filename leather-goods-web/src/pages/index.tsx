@@ -1,8 +1,11 @@
 import Head from "next/head";
-import { Inter } from "next/font/google";
 import Header from "@components/Header";
-import HomeBanner from "@components/Home/HomeBanner";
-import HomePromoProducts from "@components/Home/HomePromoProducts";
+import {
+  HomeBanner,
+  HomePromoProducts,
+  HomeCollection,
+  HomeBestSellProducts,
+} from "@components/Home";
 
 export default function Home() {
   return (
@@ -17,6 +20,8 @@ export default function Home() {
         <Header />
         <HomeBanner />
         <HomePromoProducts />
+        <HomeCollection />
+        <HomeBestSellProducts />
       </main>
     </>
   );

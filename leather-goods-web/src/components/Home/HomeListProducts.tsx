@@ -9,8 +9,8 @@ const HomeListProducts = () => {
     infinite: true,
     slidesToShow: 4,
     slidesToScroll: 1,
-    autoplay: false,
-    autoplaySpeed: 2000,
+    autoplay: true,
+    autoplaySpeed: 1500,
     arrows: true,
     responsive: [
       {

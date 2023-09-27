@@ -3,34 +3,35 @@
   width: 100%;
   margin-top: 115px;
   .banner-image {
-    width: 100%;
-    height: 100%;
-    margin: auto;
     position: relative;
-    .follow {
+    margin: auto;
+    a {
       position: absolute;
       top: 70%;
       left: 50%;
       transform: translateX(-50%);
-      padding: 8px 20px;
-      background: none;
-      color: #282727;
-      background-color: #fff;
-      font-size: 18px;
-      font-weight: 500;
-      border: none;
-      border-radius: 6px;
-      &:hover {
-        background: #282727;
-        color: #fff;
+      .follow {
+        padding: 8px 20px;
+        background: none;
+        color: #282727;
+        background-color: #fff;
+        font-size: 18px;
+        font-weight: 500;
+        border: none;
+        border-radius: 6px;
+        &:hover {
+          background: #282727;
+          color: #fff;
+        }
       }
     }
   }
 }
 
-// 2.list-products
+// 2.promo-products
 .promo-products {
-  margin-top: 60px;
+  padding: 60px 0;
+  background: #f4f4f4;
   h2 {
     color: #ddba76;
     font-size: 30px;
@@ -61,33 +62,55 @@
   }
 }
 
-.product {
-  border: 1px solid #ddba76;
-  border-radius: 4px;
-  margin: 0 30px;
-  .product-item {
-    padding: 8px;
-    .product-image {
-      .image-hover {
-        position: relative;
+// 3.collection
+#collection {
+  margin: 60px 0;
+  .collection-container {
+    display: flex;
+    .col {
+      flex: 1;
+    }
+    .image-collection {
+      position: relative;
+      height: 700px;
+      h3 {
+        font-size: 28px;
+        color: #ffffff;
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        z-index: 10;
+      }
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #181818;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: all 0.6s;
         &:hover {
-          .img-change {
-            opacity: 1;
-          }
-        }
-        .default-image {
-          position: absolute;
-          top: 0;
-          left: 0;
-          opacity: 1;
-        }
-        .img-change {
-          position: absolute;
-          top: 0;
-          left: 0;
-          opacity: 0;
+          opacity: 0.4;
         }
       }
     }
+  }
+}
+
+// 4.best-sell-products
+.best-sell-products {
+  padding: 60px 0;
+  background: #f4f4f4;
+  h2 {
+    color: #ddba76;
+    font-size: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  .description {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 20px;
   }
 }
