@@ -10,7 +10,7 @@ const HomeListProducts = () => {
     slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 1500,
+    autoplaySpeed: 2000,
     arrows: true,
     responsive: [
       {
