@@ -36,6 +36,10 @@ a:hover {
   color: #282727;
 }
 
+p {
+  margin-bottom: 0;
+}
+
 ul {
   list-style-type: none;
 }
