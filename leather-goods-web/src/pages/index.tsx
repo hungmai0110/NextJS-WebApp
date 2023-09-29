@@ -4,6 +4,7 @@ import {
   HomePromoProducts,
   HomeCollection,
   HomeBestSellProducts,
+  HomeMoreInfo,
 } from "@components/Home";
 
 export default function Home() {
@@ -20,6 +21,7 @@ export default function Home() {
         <HomePromoProducts />
         <HomeCollection />
         <HomeBestSellProducts />
+        <HomeMoreInfo />
       </main>
     </>
   );

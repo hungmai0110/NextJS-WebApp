@@ -7,7 +7,6 @@ const BackToTopButton = () => {
 
   const handleScroll = () => {
     const yOffset = window.scrollY;
-    console.log(yOffset);
     if (yOffset > 250) {
       setIsVisible(true);
     } else {
