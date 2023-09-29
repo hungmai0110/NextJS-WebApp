@@ -27,7 +27,7 @@ button {
   cursor: pointer;
 }
 
-a {
+body a {
   text-decoration: none;
   color: #282727;
 }
@@ -36,7 +36,7 @@ a:hover {
   color: #282727;
 }
 
-p {
+body p {
   margin-bottom: 0;
 }
 
