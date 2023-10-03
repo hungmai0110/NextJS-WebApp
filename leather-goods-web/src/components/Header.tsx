@@ -39,10 +39,10 @@ const Header = () => {
               <Link href="/">TRANG CHỦ</Link>
             </li>
             <li>
-              <Link href="/gioi-thieu">GIỚI THIỆU</Link>
+              <Link href="/about">GIỚI THIỆU</Link>
             </li>
             <li className={styles["products"]}>
-              <Link href="/san-pham">
+              <Link href="/products">
                 SẢN PHẨM
                 <span>
                   <i className="fa-solid fa-caret-down"></i>

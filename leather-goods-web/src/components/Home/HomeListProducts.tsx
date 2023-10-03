@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ProductCard from "@components/ProductCard";
+import styles from "@styles/HomePage.module.scss";
 
 const HomeListProducts = () => {
   const settings = {
@@ -39,14 +40,26 @@ const HomeListProducts = () => {
 
   return (
     <div className="container">
-      <div className="products-slider">
+      <div className={styles["products-slider"]}>
         <Slider {...settings}>
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          <div className={styles["card-item"]}>
+            <ProductCard />
+          </div>
+          <div className={styles["card-item"]}>
+            <ProductCard />
+          </div>
+          <div className={styles["card-item"]}>
+            <ProductCard />
+          </div>
+          <div className={styles["card-item"]}>
+            <ProductCard />
+          </div>
+          <div className={styles["card-item"]}>
+            <ProductCard />
+          </div>
+          <div className={styles["card-item"]}>
+            <ProductCard />
+          </div>
         </Slider>
       </div>
     </div>

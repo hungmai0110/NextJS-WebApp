@@ -35,8 +35,8 @@ const ProductCard = () => {
         <div className={styles["product-content"]}>
           <h3>Ví Passport Da Bò Sáp</h3>
           <div className={styles["price"]}>
-            <p className={styles["discount-price"]}>{formatMoney(500000)}</p>
             <p>{formatMoney(400000)}</p>
+            <p className={styles["discount-price"]}>{formatMoney(500000)}</p>
           </div>
           <button className={styles["btn-buy"]}>Mua ngay</button>
         </div>

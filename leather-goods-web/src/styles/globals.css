@@ -15,6 +15,7 @@ body {
 .container {
   width: 90%;
   margin: 0 auto;
+  padding: 0 6px;
 }
 
 img {
@@ -62,13 +63,10 @@ ul {
 }
 
 /* Slick slider */
-.slick-next {
-  right: 10px;
-  background-color: #282727;
-}
-
-.slick-prev {
-  left: 10px;
+.slick-prev:before,
+.slick-next:before {
+  color: #ddba76 !important;
+  font-size: 26px !important;
 }
 
 /* 1. Đường dẫn */

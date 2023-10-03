@@ -1,7 +1,6 @@
 .product-card {
   border: 1px solid #ddba76;
   border-radius: 4px;
-  margin: 0 30px;
   .product-item {
     padding: 8px;
     .product-image {
@@ -64,13 +63,19 @@
         font-size: 18px;
       }
       .price {
+        text-align: center;
         margin: 10px 0;
         p {
           color: #ddba76;
           margin-bottom: 4px;
+          font-size: 18px;
+          font-weight: 500;
         }
         .discount-price {
           text-decoration: line-through;
+          font-size: 14px;
+          color: #282727;
+          font-weight: 300;
         }
       }
       .btn-buy {

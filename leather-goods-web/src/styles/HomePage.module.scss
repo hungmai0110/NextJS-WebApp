@@ -1,7 +1,6 @@
 // 1.banner
 #banner {
   width: 100%;
-  margin-top: 115px;
   .banner-image {
     position: relative;
     margin: auto;
@@ -59,6 +58,12 @@
         width: 45px;
       }
     }
+  }
+}
+
+.products-slider {
+  .card-item {
+    padding: 0 30px;
   }
 }
 

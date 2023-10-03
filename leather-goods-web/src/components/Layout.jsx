@@ -5,10 +5,14 @@ import Footer from "./Footer";
 import HotlineButton from "./HotlineButton";
 
 const Layout = ({ children }) => {
+  const layoutStyle = {
+    marginTop: "115px",
+  };
+  
   return (
     <>
       <Header />
-      <main>{children}</main>
+      <main style={layoutStyle}>{children}</main>
       <Footer />
       <HotlineButton />
       <BackToTopButton />
