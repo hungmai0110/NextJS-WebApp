@@ -39,7 +39,7 @@ const HomeListProducts = () => {
   };
 
   return (
-    <div className="container">
+    <div className="layout-content">
       <div className={styles["products-slider"]}>
         <Slider {...settings}>
           <div className={styles["card-item"]}>

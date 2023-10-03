@@ -34,7 +34,7 @@ const HomeMoreInfo = () => {
 
   return (
     <div id={styles["more-infor"]}>
-      <div className={`${styles["more-infor-container"]} container`}>
+      <div className={`${styles["more-infor-container"]} layout-content`}>
         <h2>Bạn có biết?</h2>
         <div className="row">
           <div className="col-lg-8 col-md-9 col-sm-12">

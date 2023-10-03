@@ -4,7 +4,7 @@ import styles from "@styles/HomePage.module.scss";
 const HomeCollection = () => {
   return (
     <div id={styles["collection"]}>
-      <div className={`${styles["collection-container"]} container`}>
+      <div className={`${styles["collection-container"]} layout-content`}>
         <div className={styles["col"]}>
           <a href="./main-page/shop.html#vidanu">
             <div className={styles["image-collection"]}>

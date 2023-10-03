@@ -9,7 +9,7 @@ function Footer() {
         <img src="footer.jpg" alt="footer" />
         <h3>LUD - THỜI TRANG ĐỒ DA HANDMADE</h3>
       </div>
-      <div className={`${styles["footer-container"]} container`}>
+      <div className={`${styles["footer-container"]} layout-content`}>
         <div className="row">
           <div className="col-lg-3 col-sm-6">
             <h4>LIÊN HỆ</h4>

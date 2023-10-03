@@ -23,7 +23,7 @@ const Header = () => {
         </div>
       </div>
       <div className={styles["header-navbar"]}>
-        <div className={`${styles["header-container"]} container`}>
+        <div className={`${styles["header-container"]} layout-content`}>
           <span className={styles["menu-icon"]}>
             <i className="fa-solid fa-bars"></i>
           </span>
