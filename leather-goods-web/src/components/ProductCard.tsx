@@ -3,27 +3,38 @@ import Link from "next/link";
 import { formatMoney } from "@utils/utils";
 import styles from "@styles/ProductCard.module.scss";
 
-const ProductCard = () => {
+interface ProductDetail {
+  id: number;
+  name: string;
+  images: string[];
+  price: number;
+  promo_price: number;
+  discount: string;
+  type: string;
+  gender: string;
+}
+
+const ProductCard = ({ product }: { product: ProductDetail }) => {
   return (
     <div className={styles["product-card"]}>
       <div className={styles["product-item"]}>
         <div className={styles["product-image"]}>
-          <Link href={`san-pham/1}`}>
+          <Link href={`/products/${product.id}}`}>
             <div className={styles["image-hover"]}>
               <img
-                src="/image-1.jpeg"
-                alt="1"
+                src={product.images[0]}
+                alt="default-image"
                 className={styles["default-image"]}
               />
               <img
-                src="/image-2.jpeg"
-                alt="2"
+                src={product.images[1]}
+                alt="img-change"
                 className={styles["img-change"]}
               />
             </div>
           </Link>
           <div className={styles["discount"]}>
-            <p>10%</p>
+            <p>{product.discount}</p>
           </div>
           <div className={styles["add-to-cart"]}>
             <span>
@@ -33,10 +44,12 @@ const ProductCard = () => {
         </div>
 
         <div className={styles["product-content"]}>
-          <h3>Ví Passport Da Bò Sáp</h3>
+          <h3>{product.name}</h3>
           <div className={styles["price"]}>
-            <p>{formatMoney(400000)}</p>
-            <p className={styles["discount-price"]}>{formatMoney(500000)}</p>
+            <p>{formatMoney(product.price)}</p>
+            <p className={styles["discount-price"]}>
+              {formatMoney(product.promo_price)}
+            </p>
           </div>
           <button className={styles["btn-buy"]}>Mua ngay</button>
         </div>

@@ -1,11 +1,8 @@
 import React from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import style from "@styles/ProductsPage.module.scss";
 import ProductCard from "@components/ProductCard";
-import styles from "@styles/HomePage.module.scss";
 
-const HomeListProducts = () => {
+const ProductsPage = () => {
   const products: any = [
     {
       id: 1,
@@ -107,51 +104,96 @@ const HomeListProducts = () => {
     },
   ];
 
-  const settings = {
-    infinite: true,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 2000,
-    arrows: true,
-    responsive: [
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 992,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
-
   return (
-    <div className="layout-content">
-      <div className={styles["products-slider"]}>
-        <Slider {...settings}>
-          {products.map((product: any) => (
-            <div className={styles["card-item"]}>
-              <ProductCard key={product.id} product={product} />
+    <div className={style["products-page"]}>
+      <div className={`${style["container"]} layout-content`}>
+        <div className={style["filter-checkbox"]}>
+          <div className={style["filter-checkbox__item"]}>
+            <div className={style["title"]}>
+              <p>Danh mục sản phẩm</p>
             </div>
-          ))}
-        </Slider>
+            <div className={style["list-filter"]}>
+              <form>
+                <input
+                  type="radio"
+                  id="vehicle1"
+                  name="product-portfolio"
+                  value="Bike"
+                />
+                <label>Ví da nam</label>
+                <br />
+                <input
+                  type="radio"
+                  id="vehicle2"
+                  name="product-portfolio"
+                  value="Car"
+                />
+                <label>Ví da nữ</label>
+                <br />
+              </form>
+            </div>
+          </div>
+          <div className={style["filter-checkbox__item"]}>
+            <div className={style["title"]}>
+              <p>Lọc giá</p>
+            </div>
+            <div className={style["list-filter"]}>
+              <form>
+                <input
+                  type="radio"
+                  id="price1"
+                  name="filter-price"
+                  value="500"
+                />
+                <label>Dưới 500.000đ</label>
+                <br />
+                <input
+                  type="radio"
+                  id="price2"
+                  name="filter-price"
+                  value="1000"
+                />
+                <label>500.000đ - 1.000.00đ</label>
+                <br />
+                <input
+                  type="radio"
+                  id="price3"
+                  name="filter-price"
+                  value="2000"
+                />
+                <label>1000.000đ - 2.000.00đ</label>
+                <br />
+                <input
+                  type="radio"
+                  id="price4"
+                  name="filter-price"
+                  value=">2000"
+                />
+                <label>Trên 2.000.00đ</label>
+                <br />
+              </form>
+            </div>
+          </div>
+        </div>
+        <div className={style["filter-result"]}>
+          <div className={style["result-title"]}>
+            <h3>Danh sách sản phẩm</h3>
+            <select>
+              <option value="0">Chọn bộ lọc:</option>
+              <option value="1">Sắp xếp theo tên</option>
+              <option value="2">Sắp xếp theo giá tăng dần</option>
+              <option value="3">Sắp xếp theo giá giảm dần</option>
+            </select>
+          </div>
+          <div className={style["list-products"]}>
+            {products.map((product:any) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
-export default HomeListProducts;
+export default ProductsPage;
