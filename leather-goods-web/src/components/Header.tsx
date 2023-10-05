@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "@styles/header.module.scss";
 import Link from "next/link";
+import { SearchModal, LoginModal, CartModal } from "./Modal";
 
 const Header = () => {
+  const [showModal, setShowModal] = useState({
+    showCartModal: false,
+    showSearchModal: false,
+    showLoginModal: false,
+  });
+
   return (
     <header className={styles["header"]}>
       <div className={`${styles["header-infor"]} color-white`}>
@@ -75,22 +82,45 @@ const Header = () => {
               </ul>
             </li>
             <li>
-              <Link href="/tin-tuc">TIN TỨC</Link>
+              <Link href="/news">TIN TỨC</Link>
             </li>
             <li>
-              <Link href="/lien-he">LIÊN HỆ</Link>
+              <Link href="/contact">LIÊN HỆ</Link>
             </li>
           </ul>
 
           <div className={styles["icon-menu"]}>
-            <span className={styles["seach-product"]}>
+            <span
+              className={styles["seach-product"]}
+              onClick={() =>
+                setShowModal((showModal) => ({
+                  ...showModal,
+                  showSearchModal: true,
+                }))
+              }
+            >
               <i className="fa-solid fa-magnifying-glass"></i>
             </span>
-            <span className={styles["user"]}>
+            <span
+              className={styles["user"]}
+              onClick={() =>
+                setShowModal((showModal) => ({
+                  ...showModal,
+                  showLoginModal: true,
+                }))
+              }
+            >
               <i className="fa-solid fa-circle-user"></i>
             </span>
             <div className={styles["cart"]}>
-              <span>
+              <span
+                onClick={() =>
+                  setShowModal((showModal) => ({
+                    ...showModal,
+                    showCartModal: true,
+                  }))
+                }
+              >
                 <i className="fa-solid fa-cart-shopping"></i>
               </span>
               <span className={styles["cart-count"]}>
@@ -100,6 +130,37 @@ const Header = () => {
           </div>
         </div>
       </div>
+
+      {showModal.showCartModal && (
+        <CartModal
+          onClose={() =>
+            setShowModal((showModal) => ({
+              ...showModal,
+              showCartModal: false,
+            }))
+          }
+        />
+      )}
+      {showModal.showSearchModal && (
+        <SearchModal
+          onClose={() =>
+            setShowModal((showModal) => ({
+              ...showModal,
+              showSearchModal: false,
+            }))
+          }
+        />
+      )}
+      {showModal.showLoginModal && (
+        <LoginModal
+          onClose={() =>
+            setShowModal((showModal) => ({
+              ...showModal,
+              showLoginModal: false,
+            }))
+          }
+        />
+      )}
     </header>
   );
 };

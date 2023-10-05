@@ -1,35 +1,17 @@
-.active {
-  color: #ddba76;
-  font-weight: 500;
-}
-
-.header a:hover {
-  color: #ddba76;
-}
-
-.header-side-bar {
-  display: none;
-  .close-pop-up {
-    position: absolute;
-    top: 4px;
-    right: 15px;
-    font-size: 28px;
-    cursor: pointer;
-    z-index: 111;
-    .home {
-      margin-top: 14px;
-    }
-    ul li {
-      cursor: pointer;
-    }
-  }
-}
-
 .header {
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 100;
+  a {
+    &:hover {
+      color: #ddba76;
+    }
+  }
+  .active {
+    color: #ddba76;
+    font-weight: 500;
+  }
   .header-infor {
     display: flex;
     justify-content: space-between;
