@@ -30,7 +30,6 @@
 // 2.promo-products
 .promo-products {
   padding: 60px 0;
-  background: #f4f4f4;
   h2 {
     color: #ddba76;
     font-size: 30px;
@@ -69,7 +68,8 @@
 
 // 3.collection
 #collection {
-  margin: 60px 0;
+  padding: 60px 0;
+  background: #f4f4f4;
   .collection-container {
     display: flex;
     .col {
@@ -106,7 +106,6 @@
 // 4.best-sell-products
 .best-sell-products {
   padding: 60px 0;
-  background: #f4f4f4;
   h2 {
     color: #ddba76;
     font-size: 30px;
@@ -123,6 +122,7 @@
 //5.more-info
 #more-infor {
   padding: 60px 0;
+  background: #f4f4f4;
   .more-infor-container {
     h2 {
       color: #ddba76;

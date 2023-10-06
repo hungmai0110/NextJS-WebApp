@@ -81,19 +81,22 @@ const SearchModal: React.FC<ModalProps> = ({ onClose }) => {
         <div className={styles["list-cart-wrapper"]}>
           <div className={styles["list-cart-products"]}>
             {products.map((product: any) => (
-              <div className={styles["mini-cart-product"]} key={product.id}>
-                <div className="d-flex">
-                  <div className={styles["mini-cart-product-image"]}>
-                    <img src={product.images[1]} alt="1" />
-                  </div>
-                  <div className="mini-cart-product-content">
-                    <p className="mb-2">{product.name}</p>
-                    <p className="text-danger d-flex align-items-center">
-                      {formatMoney(product.promo_price)}
-                    </p>
+              <>
+                <div className={styles["mini-cart-product"]} key={product.id}>
+                  <div className="d-flex">
+                    <div className={styles["mini-cart-product-image"]}>
+                      <img src={product.images[1]} alt="1" />
+                    </div>
+                    <div className="mini-cart-product-content">
+                      <p className="mb-2">{product.name}</p>
+                      <p className="text-danger d-flex align-items-center">
+                        {formatMoney(product.promo_price)}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
+                <hr />
+              </>
             ))}
           </div>
         </div>

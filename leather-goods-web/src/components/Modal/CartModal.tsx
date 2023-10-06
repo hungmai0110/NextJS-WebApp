@@ -57,10 +57,26 @@ const CartModal: React.FC<ModalProps> = ({ onClose }) => {
       type: "vidanam",
       gender: "male",
     },
+    {
+      id: 4,
+      name: "Ví Cầm Tay, Xách Tay - 1625",
+      images: [
+        "https://product.hstatic.net/1000260559/product/vi-cam-tay-xach-tay-da-bo-nho-gon-3021625__6__c3fd92966a88484eaf2d56b002688a56_master.jpg",
+        "https://product.hstatic.net/1000260559/product/vi-cam-tay-xach-tay-da-bo-nho-gon-3021625__4__c497b56b724d4988875cb448da6e9c84_master.jpg",
+        "https://product.hstatic.net/1000260559/product/vi-cam-tay-xach-tay-da-bo-nho-gon-3021625__1__9964c5c4b02e41f3ae5b9473f577eee3_master.jpg",
+        "https://product.hstatic.net/1000260559/product/vi-cam-tay-xach-tay-da-bo-nho-gon-3021625__5__5335fbdcbf5f42c2a4a276f383044c4c_master.jpg",
+        "https://product.hstatic.net/1000260559/product/vi-cam-tay-xach-tay-da-bo-nho-gon-3021625__4__c497b56b724d4988875cb448da6e9c84_master.jpg",
+      ],
+      price: 350000,
+      promo_price: 240000,
+      discount: "-30%",
+      type: "vidanam",
+      gender: "male",
+    },
   ];
 
   const totalMoneyProductsCart = products.reduce((total: any, p: any) => {
-    return total + p.price * p.count;
+    return total + p.price * 1;
   }, 0);
 
   return (
@@ -69,7 +85,9 @@ const CartModal: React.FC<ModalProps> = ({ onClose }) => {
       <div id={styles["cart-modal"]}>
         <div className={styles["mini-cart-container"]}>
           <h5 className="text-center">GIỎ HÀNG</h5>
-          <p className="fst-italic message">Không có sản phẩm trong giỏ hàng</p>
+          <p className={`${styles["message"]} fst-italic`}>
+            Không có sản phẩm trong giỏ hàng
+          </p>
           <span className={styles["close-pop-up"]} onClick={onClose}>
             <i className="fa-solid fa-circle-xmark"></i>
           </span>
@@ -77,41 +95,44 @@ const CartModal: React.FC<ModalProps> = ({ onClose }) => {
 
           <div className={styles["list-cart-products"]}>
             {products.map((product: any) => (
-              <div key={product.id} className={styles["mini-cart-product"]}>
-                <div className="d-flex">
-                  <div className={styles["mini-cart-product-image"]}>
-                    <img src={product.images[1]} alt="bao da ip 7" />
-                  </div>
-                  <div className={styles["mini-cart-product-content"]}>
-                    <p className="mb-2">{product.name}</p>
-                    <div className={styles["mini-cart-data"]}>
-                      <div className={styles["change-count"]}>
-                        <span className="border d-inline-block me-3">
-                          <span
-                            className={`${styles["btn-minus-count"]} py-1 px-3 border-end d-inline-block fw-bold`}
-                          >
-                            -
-                          </span>
-                          <span className="py-1 px-3 d-inline-block fw-bold count">
-                            {product.count}
-                          </span>
-                          <span
-                            className={`${styles["btn-plus-count"]} py-1 px-3 border-start d-inline-block fw-bold`}
-                          >
-                            +
-                          </span>
-                        </span>
-                      </div>
+              <>
+                <div key={product.id} className={styles["mini-cart-product"]}>
+                  <div className="d-flex">
+                    <div className={styles["mini-cart-product-image"]}>
+                      <img src={product.images[1]} alt="bao da ip 7" />
                     </div>
-                    <span className={styles["delete-product"]}>
-                      <i className="fa-solid fa-xmark"></i>
-                    </span>
+                    <div className={styles["mini-cart-product-content"]}>
+                      <p className="mb-2">{product.name}</p>
+                      <div className={styles["mini-cart-data"]}>
+                        <div className={styles["change-count"]}>
+                          <span className="border d-inline-block me-3">
+                            <span
+                              className={`${styles["btn-minus-count"]} py-1 px-3 border-end d-inline-block fw-bold`}
+                            >
+                              -
+                            </span>
+                            <span className="py-1 px-3 d-inline-block fw-bold count">
+                              1
+                            </span>
+                            <span
+                              className={`${styles["btn-plus-count"]} py-1 px-3 border-start d-inline-block fw-bold`}
+                            >
+                              +
+                            </span>
+                          </span>
+                        </div>
+                      </div>
+                      <span className={styles["delete-product"]}>
+                        <i className="fa-solid fa-xmark"></i>
+                      </span>
+                    </div>
                   </div>
+                  <p className="text-danger d-flex align-items-center">
+                    {formatMoney(product.price)}
+                  </p>
                 </div>
-                <p className="text-danger d-flex align-items-center">
-                  {formatMoney(product.price)}
-                </p>
-              </div>
+                <hr />
+              </>
             ))}
           </div>
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "@styles/ProductsPage.module.scss";
 import ProductCard from "@components/ProductCard";
 
@@ -70,39 +70,110 @@ const ProductsPage = () => {
       tag: "promo",
     },
     {
-      id: 5,
-      name: "Ví Gấp Nam Đánh Xi Thủ Công - 7792",
+      id: 12,
+      name: "Ví Cầm Một Khóa - 1618",
       images: [
-        "https://product.hstatic.net/1000260559/product/38600874_1097633267051453_572793_6e72ec5ba4c4438bb17295e32c8d7bf2_master.jpg",
-        "https://product.hstatic.net/1000260559/product/38635130_1097633127051467_3361787128689197056_o_master.jpg",
-        "https://product.hstatic.net/1000260559/product/8809283558_68489761_51c5287489604b579651acaf1d380e75_master.jpg",
-        "https://product.hstatic.net/1000260559/product/8773623602_68489761_9ca4e6eba22740c89107f971a96d1174_master.jpg",
-        "https://product.hstatic.net/1000260559/product/38493473_1097633120384801_8958068612740939776_o_master.jpg",
+        "https://product.hstatic.net/1000260559/product/vi-cam-tay-nam-nu-mot-khoa-da-that-3021618__1__f77eba943b354f4eb615826b60009df6_master.jpg",
+        "https://product.hstatic.net/1000260559/product/vi-cam-tay-nam-nu-mot-khoa-da-that-3021618__2__2499dfd2f64a4369b78878d3fa41f0d7_master.jpg",
+        "https://product.hstatic.net/1000260559/product/vi-cam-tay-nam-nu-mot-khoa-da-that-3021618__7__d30eb75d2b764a13aec71b87a4dc6ef5_master.jpg",
+        "https://product.hstatic.net/1000260559/product/vi-cam-tay-nam-nu-mot-khoa-da-that-3021618__3__f4ca687519cb45ba9bf9dbeb34c63ac0_master.jpg",
+        "https://product.hstatic.net/1000260559/product/vi-cam-tay-nam-nu-mot-khoa-da-that-3021618__6__11e237c250d64beab02925bb279600d3_master.jpg",
       ],
-      price: 350000,
-      promo_price: 290000,
-      discount: "-15%",
-      type: "vidanam",
-      gender: "male",
-      tag: "bestsell",
+      price: 450000,
+      promo_price: 360000,
+      discount: "-20%",
+      type: "vidanu",
+      gender: "female",
     },
     {
-      id: 6,
-      name: "Ví Da Đựng Passport - 1671",
+      id: 13,
+      name: "Ví Da Cá Sấu Có Quai Chéo - 2423",
       images: [
-        "https://product.hstatic.net/1000260559/product/10347784678_1445275338_7ca6d90453894b8e844813ceb93e07ce_master.jpg",
-        "https://product.hstatic.net/1000260559/product/3cce84adead746e6afca797d1db8a641_e97c5389847e443dbf9bb64f64919440_master.jpg",
-        "https://product.hstatic.net/1000260559/product/10321212727_1445275338_d58019884adb40aba4a84f95fe0a6e6e_master.jpg",
-        "https://product.hstatic.net/1000260559/product/3cce84adead746e6afca797d1db8a641_e97c5389847e443dbf9bb64f64919440_master.jpg",
-        "https://product.hstatic.net/1000260559/product/10321206765_1445275338_d8e94737b2664e09b52153e05b9c3a96_master.jpg",
+        "https://product.hstatic.net/1000260559/product/vi_cam_tay_ca_sau__2__71c84102325442c6b9d3bb6f6defc54b_master.jpg",
+        "https://product.hstatic.net/1000260559/product/vi-cam-tay-ca-sau-co-quai-deo-cheo-nau-dam__3__7b7eb481ff994085b031fcf1803e958c_master.jpg",
+        "https://product.hstatic.net/1000260559/product/vi-cam-tay-ca-sau-co-quai-deo-cheo-nau-dam__7__7295acd7559442c8b6e1d3215ca5a6fc_master.jpg",
+        "https://product.hstatic.net/1000260559/product/vi-cam-tay-ca-sau-co-quai-deo-cheo-nau-dam__6__8ba8a510cfce49689362b3a735b606ec_master.jpg",
+        "https://product.hstatic.net/1000260559/product/vi_cam_tay_ca_sau__5__a2a0602781854b4f91460ab5eb330e61_master.jpg",
       ],
-      price: 400000,
-      promo_price: 330000,
-      discount: "-17%",
-      type: "vidanam",
-      gender: "male",
+      price: 1200000,
+      promo_price: 960000,
+      discount: "-27%",
+      type: "vidanu",
+      gender: "female",
     },
   ];
+
+  const [selectedFilter, setSelectedFilter] = useState("0");
+  const [filteredProducts, setFilteredProducts] = useState(products);
+
+  // Lọc sản phẩm theo danh mục
+  const handleCategoryChange  = (event: any) => {
+    let selectedCategory = event.target.value;
+
+    if (selectedCategory === "vidanam") {
+      let result = products.filter((product: any) => {
+        return product.type === "vidanam";
+      });
+      setFilteredProducts(result);
+    } else if (selectedCategory === "vidanu") {
+      let result = products.filter((product: any) => {
+        return product.type === "vidanu";
+      });
+      setFilteredProducts(result);
+    }
+  };
+
+  // Lọc sản phẩm theo giá
+  const handlePriceChange  = (event: any) => {
+    let selectedPrice = event.target.value;
+
+    if (selectedPrice === "<300") {
+      let result = products.filter((product: any) => {
+        return product.price < 500000;
+      });
+      setFilteredProducts(result);
+    } else if (selectedPrice === "300-500") {
+      let result = products.filter((product: any) => {
+        return product.price >= 300000 && product.price <= 500000;
+      });
+      setFilteredProducts(result);
+    } else if (selectedPrice === "500-1000") {
+      let result = products.filter((product: any) => {
+        return product.price >= 500000 && product.price <= 1000000;
+      });
+      setFilteredProducts(result);
+    } else if (selectedPrice === "1000-2000") {
+      let result = products.filter((product: any) => {
+        return product.price >= 1000000 && product.price <= 2000000;
+      });
+      setFilteredProducts(result);
+    }
+  };
+
+  // Lọc sản phẩm theo option
+  const handleFilterChange = (event: any) => {
+    const selectedValue = event.target.value;
+    setSelectedFilter(selectedValue);
+
+    if (selectedValue === "1") {
+      // Sắp xếp theo tên
+      const sortedProducts = [...products].sort((a, b) =>
+        a.name.localeCompare(b.name)
+      );
+      setFilteredProducts(sortedProducts);
+    } else if (selectedValue === "2") {
+      // Sắp xếp theo giá tăng dần
+      const sortedProducts = [...products].sort((a, b) => a.price - b.price);
+      setFilteredProducts(sortedProducts);
+    } else if (selectedValue === "3") {
+      // Sắp xếp theo giá giảm dần
+      const sortedProducts = [...products].sort((a, b) => b.price - a.price);
+      setFilteredProducts(sortedProducts);
+    } else {
+      // Hiển thị danh sách sản phẩm ban đầu
+      setFilteredProducts(products);
+    }
+  };
 
   return (
     <div className={style["products-page"]}>
@@ -118,7 +189,8 @@ const ProductsPage = () => {
                   type="radio"
                   id="vehicle1"
                   name="product-portfolio"
-                  value="Bike"
+                  value="vidanam"
+                  onChange={handleCategoryChange }
                 />
                 <label>Ví da nam</label>
                 <br />
@@ -126,7 +198,8 @@ const ProductsPage = () => {
                   type="radio"
                   id="vehicle2"
                   name="product-portfolio"
-                  value="Car"
+                  value="vidanu"
+                  onChange={handleCategoryChange }
                 />
                 <label>Ví da nữ</label>
                 <br />
@@ -143,33 +216,37 @@ const ProductsPage = () => {
                   type="radio"
                   id="price1"
                   name="filter-price"
-                  value="500"
+                  value="<300"
+                  onChange={handlePriceChange }
                 />
-                <label>Dưới 500.000đ</label>
+                <label>Dưới 300.000đ</label>
                 <br />
                 <input
                   type="radio"
                   id="price2"
                   name="filter-price"
-                  value="1000"
+                  value="300-500"
+                  onChange={handlePriceChange }
                 />
-                <label>500.000đ - 1.000.00đ</label>
+                <label>300.000đ - 500.00đ</label>
                 <br />
                 <input
                   type="radio"
                   id="price3"
                   name="filter-price"
-                  value="2000"
+                  value="500-1000"
+                  onChange={handlePriceChange }
                 />
-                <label>1000.000đ - 2.000.00đ</label>
+                <label>500.000đ - 1.000.00đ</label>
                 <br />
                 <input
                   type="radio"
                   id="price4"
                   name="filter-price"
-                  value=">2000"
+                  value=">1000"
+                  onChange={handlePriceChange }
                 />
-                <label>Trên 2.000.00đ</label>
+                <label>1.000.00 - 2.000.00đ</label>
                 <br />
               </form>
             </div>
@@ -178,7 +255,7 @@ const ProductsPage = () => {
         <div className={style["filter-result"]}>
           <div className={style["result-title"]}>
             <h3>Danh sách sản phẩm</h3>
-            <select>
+            <select value={selectedFilter} onChange={handleFilterChange}>
               <option value="0">Chọn bộ lọc:</option>
               <option value="1">Sắp xếp theo tên</option>
               <option value="2">Sắp xếp theo giá tăng dần</option>
@@ -186,7 +263,7 @@ const ProductsPage = () => {
             </select>
           </div>
           <div className={style["list-products"]}>
-            {products.map((product:any) => (
+            {filteredProducts.map((product: any) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
