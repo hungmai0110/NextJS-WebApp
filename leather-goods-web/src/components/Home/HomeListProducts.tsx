@@ -144,7 +144,7 @@ const HomeListProducts = () => {
       <div className={styles["products-slider"]}>
         <Slider {...settings}>
           {products.map((product: any) => (
-            <div className={styles["card-item"]}>
+            <div key={product.id} className={styles["card-item"]}>
               <ProductCard key={product.id} product={product} />
             </div>
           ))}

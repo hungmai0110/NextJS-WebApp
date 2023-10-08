@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { formatMoney } from "@utils/utils";
 import styles from "@styles/modal.module.scss";
@@ -74,10 +74,29 @@ const CartModal: React.FC<ModalProps> = ({ onClose }) => {
       gender: "male",
     },
   ];
+  const [cartItems, setCartItems] = useState(
+    products.map((product: any) => ({ ...product, quantity: 1 }))
+  );
 
   const totalMoneyProductsCart = products.reduce((total: any, p: any) => {
     return total + p.price * 1;
   }, 0);
+
+  const handleIncrement = (productId: number) => {
+    const updatedCartItems = cartItems.map((item: any) =>
+      item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
+    );
+    setCartItems(updatedCartItems);
+  };
+
+  const handleDecrement = (productId: number) => {
+    const updatedCartItems = cartItems.map((item: any) =>
+      item.id === productId && item.quantity > 1
+        ? { ...item, quantity: item.quantity - 1 }
+        : item
+    );
+    setCartItems(updatedCartItems);
+  };
 
   return (
     <>
@@ -94,9 +113,9 @@ const CartModal: React.FC<ModalProps> = ({ onClose }) => {
           <hr />
 
           <div className={styles["list-cart-products"]}>
-            {products.map((product: any) => (
-              <>
-                <div key={product.id} className={styles["mini-cart-product"]}>
+            {cartItems.map((product: any) => (
+              <div key={product.id}>
+                <div className={styles["mini-cart-product"]}>
                   <div className="d-flex">
                     <div className={styles["mini-cart-product-image"]}>
                       <img src={product.images[1]} alt="bao da ip 7" />
@@ -108,14 +127,16 @@ const CartModal: React.FC<ModalProps> = ({ onClose }) => {
                           <span className="border d-inline-block me-3">
                             <span
                               className={`${styles["btn-minus-count"]} py-1 px-3 border-end d-inline-block fw-bold`}
+                              onClick={() => handleDecrement(product.id)}
                             >
                               -
                             </span>
                             <span className="py-1 px-3 d-inline-block fw-bold count">
-                              1
+                              {product.quantity}
                             </span>
                             <span
                               className={`${styles["btn-plus-count"]} py-1 px-3 border-start d-inline-block fw-bold`}
+                              onClick={() => handleIncrement(product.id)}
                             >
                               +
                             </span>
@@ -132,7 +153,7 @@ const CartModal: React.FC<ModalProps> = ({ onClose }) => {
                   </p>
                 </div>
                 <hr />
-              </>
+              </div>
             ))}
           </div>
 
