@@ -1,6 +1,6 @@
 import React from "react";
 import HomeListProducts from "./HomeListProducts";
-import styles from "@styles/HomePage.module.scss";
+import styles from "@styles/pages/HomePage.module.scss";
 
 const HomeBestSellProducts = () => {
   return (

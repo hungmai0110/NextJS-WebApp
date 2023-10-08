@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import style from "@styles/ProductsPage.module.scss";
+import style from "@styles/pages/ProductsPage.module.scss";
 import ProductCard from "@components/ProductCard";
 
 const ProductsPage = () => {
@@ -107,7 +107,7 @@ const ProductsPage = () => {
   const [filteredProducts, setFilteredProducts] = useState(products);
 
   // Lọc sản phẩm theo danh mục
-  const handleCategoryChange  = (event: any) => {
+  const handleCategoryChange = (event: any) => {
     let selectedCategory = event.target.value;
 
     if (selectedCategory === "vidanam") {
@@ -124,7 +124,7 @@ const ProductsPage = () => {
   };
 
   // Lọc sản phẩm theo giá
-  const handlePriceChange  = (event: any) => {
+  const handlePriceChange = (event: any) => {
     let selectedPrice = event.target.value;
 
     if (selectedPrice === "<300") {
@@ -190,7 +190,7 @@ const ProductsPage = () => {
                   id="vehicle1"
                   name="product-portfolio"
                   value="vidanam"
-                  onChange={handleCategoryChange }
+                  onChange={handleCategoryChange}
                 />
                 <label>Ví da nam</label>
                 <br />
@@ -199,9 +199,54 @@ const ProductsPage = () => {
                   id="vehicle2"
                   name="product-portfolio"
                   value="vidanu"
-                  onChange={handleCategoryChange }
+                  onChange={handleCategoryChange}
                 />
                 <label>Ví da nữ</label>
+                <br />
+                <input
+                  type="radio"
+                  id="vehicle2"
+                  name="product-portfolio"
+                  value="vidanu"
+                  onChange={handleCategoryChange}
+                />
+                <label>Dây Da Đồng Hồ</label>
+                <br />
+                <input
+                  type="radio"
+                  id="vehicle2"
+                  name="product-portfolio"
+                  value="vidanu"
+                  onChange={handleCategoryChange}
+                />
+                <label>Túi Da - Cặp Da</label>
+                <br />
+                <input
+                  type="radio"
+                  id="vehicle2"
+                  name="product-portfolio"
+                  value="vidanu"
+                  onChange={handleCategoryChange}
+                />
+                <label>Thắt Lưng</label>
+                <br />
+                <input
+                  type="radio"
+                  id="vehicle2"
+                  name="product-portfolio"
+                  value="vidanu"
+                  onChange={handleCategoryChange}
+                />
+                <label>Phụ Kiện</label>
+                <br />
+                <input
+                  type="radio"
+                  id="vehicle2"
+                  name="product-portfolio"
+                  value="vidanu"
+                  onChange={handleCategoryChange}
+                />
+                <label>Các Loại Bao Da</label>
                 <br />
               </form>
             </div>
@@ -217,7 +262,7 @@ const ProductsPage = () => {
                   id="price1"
                   name="filter-price"
                   value="<300"
-                  onChange={handlePriceChange }
+                  onChange={handlePriceChange}
                 />
                 <label>Dưới 300.000đ</label>
                 <br />
@@ -226,7 +271,7 @@ const ProductsPage = () => {
                   id="price2"
                   name="filter-price"
                   value="300-500"
-                  onChange={handlePriceChange }
+                  onChange={handlePriceChange}
                 />
                 <label>300.000đ - 500.00đ</label>
                 <br />
@@ -235,7 +280,7 @@ const ProductsPage = () => {
                   id="price3"
                   name="filter-price"
                   value="500-1000"
-                  onChange={handlePriceChange }
+                  onChange={handlePriceChange}
                 />
                 <label>500.000đ - 1.000.00đ</label>
                 <br />
@@ -244,7 +289,7 @@ const ProductsPage = () => {
                   id="price4"
                   name="filter-price"
                   value=">1000"
-                  onChange={handlePriceChange }
+                  onChange={handlePriceChange}
                 />
                 <label>1.000.00 - 2.000.00đ</label>
                 <br />

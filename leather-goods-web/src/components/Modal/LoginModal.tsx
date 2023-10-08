@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "@styles/modal.module.scss";
+import styles from "@styles/components/modal.module.scss";
 
 interface ModalProps {
   onClose: () => void;

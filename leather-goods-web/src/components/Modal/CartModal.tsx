@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { formatMoney } from "@utils/utils";
-import styles from "@styles/modal.module.scss";
+import styles from "@styles/components/modal.module.scss";
 
 interface ModalProps {
   onClose: () => void;
@@ -162,7 +162,7 @@ const CartModal: React.FC<ModalProps> = ({ onClose }) => {
             <p className="text-danger">{formatMoney(totalMoneyProductsCart)}</p>
           </div>
           <div className="d-flex justify-content-between">
-            <Link href="/shoppingcart">
+            <Link href="/shopping-cart">
               <button className="btn-white">XEM GIỎ HÀNG</button>
             </Link>
             <Link href="/payment">

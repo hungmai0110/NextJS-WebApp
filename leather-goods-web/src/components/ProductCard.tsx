@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { formatMoney } from "@utils/utils";
-import styles from "@styles/ProductCard.module.scss";
+import styles from "@styles/components/ProductCard.module.scss";
 // import cartApi from "../api/cartApi";
 interface ProductDetail {
   id: number;

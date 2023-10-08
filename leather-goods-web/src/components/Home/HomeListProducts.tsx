@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ProductCard from "@components/ProductCard";
-import styles from "@styles/HomePage.module.scss";
+import styles from "@styles/pages/HomePage.module.scss";
 
 const HomeListProducts = () => {
   const products: any = [

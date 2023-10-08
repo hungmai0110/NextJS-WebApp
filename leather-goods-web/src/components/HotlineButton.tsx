@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import styles from "@styles/HotlineButton.module.scss";
+import styles from "@styles/components/HotlineButton.module.scss";
 
 const HotlineButton = () => {
   return (

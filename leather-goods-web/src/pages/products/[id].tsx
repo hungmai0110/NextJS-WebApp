@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
-import styles from "@styles/ProductDetail.module.scss";
+import styles from "@styles/pages/ProductDetailPage.module.scss";
 import { formatMoney } from "@utils/utils";
 import Link from "next/link";
 import { HomeBestSellProducts } from "@components/Home";
@@ -131,7 +131,7 @@ const ProductDetail = () => {
                 </span>
               </div>
               <div className="d-flex justify-content-between">
-                <Link href="/shoppingcart">
+                <Link href="/shopping-cart">
                   <button className="btn-white me-3">XEM GIỎ HÀNG</button>
                 </Link>
                 <Link href="/payment">

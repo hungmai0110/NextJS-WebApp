@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "@styles/HomePage.module.scss";
+import styles from "@styles/pages/HomePage.module.scss";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

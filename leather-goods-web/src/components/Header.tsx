@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "@styles/header.module.scss";
+import styles from "@styles/components/header.module.scss";
 import Link from "next/link";
 import { SearchModal, LoginModal, CartModal } from "./Modal";
 
@@ -9,6 +9,10 @@ const Header = () => {
     showSearchModal: false,
     showLoginModal: false,
   });
+  const [activeMenuItem, setActiveMenuItem] = useState("home");
+  const handleMenuItemClick = (menuItem: string) => {
+    setActiveMenuItem(menuItem);
+  };
 
   return (
     <header className={styles["header"]}>
@@ -36,20 +40,31 @@ const Header = () => {
           </span>
 
           <div className={styles["logo"]}>
-            <Link href="/">
+            <Link href="/" onClick={() => handleMenuItemClick("home")}>
               <img src="logo.png" alt="logo" />
             </Link>
           </div>
 
           <ul className={styles["list-menu"]}>
-            <li>
-              <Link href="/">TRANG CHỦ</Link>
+            <li className={activeMenuItem === "home" ? styles.active : ""}>
+              <Link href="/" onClick={() => handleMenuItemClick("home")}>
+                TRANG CHỦ
+              </Link>
             </li>
-            <li>
-              <Link href="/about">GIỚI THIỆU</Link>
+            <li className={activeMenuItem === "about" ? styles.active : ""}>
+              <Link href="/about" onClick={() => handleMenuItemClick("about")}>
+                GIỚI THIỆU
+              </Link>
             </li>
-            <li className={styles["products"]}>
-              <Link href="/products">
+            <li
+              className={`${styles["products"]} ${
+                activeMenuItem === "products" ? styles.active : ""
+              }`}
+            >
+              <Link
+                href="/products"
+                onClick={() => handleMenuItemClick("products")}
+              >
                 SẢN PHẨM
                 <span>
                   <i className="fa-solid fa-caret-down"></i>
@@ -81,11 +96,18 @@ const Header = () => {
                 </li>
               </ul>
             </li>
-            <li>
-              <Link href="/news">TIN TỨC</Link>
+            <li className={activeMenuItem === "news" ? styles.active : ""}>
+              <Link href="/news" onClick={() => handleMenuItemClick("news")}>
+                TIN TỨC
+              </Link>
             </li>
-            <li>
-              <Link href="/contact">LIÊN HỆ</Link>
+            <li className={activeMenuItem === "contact" ? styles.active : ""}>
+              <Link
+                href="/contact"
+                onClick={() => handleMenuItemClick("contact")}
+              >
+                LIÊN HỆ
+              </Link>
             </li>
           </ul>
 

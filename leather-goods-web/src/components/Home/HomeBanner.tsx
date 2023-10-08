@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import styles from "@styles/HomePage.module.scss";
+import styles from "@styles/pages/HomePage.module.scss";
 
 const HomeBanner = () => {
   return (

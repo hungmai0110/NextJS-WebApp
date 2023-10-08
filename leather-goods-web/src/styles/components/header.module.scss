@@ -9,8 +9,7 @@
     }
   }
   .active {
-    color: #ddba76;
-    font-weight: 500;
+    font-weight: 600;
   }
   .header-infor {
     display: flex;
@@ -86,6 +85,7 @@
           padding: 0 0 16px 16px;
           display: none;
           li {
+            font-weight: 400 !important;
             margin-top: 16px;
           }
         }
