@@ -24,10 +24,6 @@ img {
   object-fit: cover;
 }
 
-button {
-  cursor: pointer;
-}
-
 body a {
   text-decoration: none;
   color: #282727;
@@ -47,6 +43,33 @@ ul {
 
 .fw-500 {
   font-weight: 500;
+}
+
+/* button */
+button {
+  cursor: pointer;
+}
+
+.btn-white {
+  background: none;
+  color: #282727;
+  border: 1px solid #282727;
+  border-radius: 4px;
+}
+.btn-white:hover {
+  background: #282727;
+  color: #fff;
+}
+
+.btn-black {
+  background: #282727;
+  color: #fff;
+  border: 1px solid #282727;
+  border-radius: 4px;
+}
+.btn-black:hover {
+  background: none;
+  color: #282727;
 }
 
 /* color */

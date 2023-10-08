@@ -74,25 +74,9 @@
       display: flex;
       justify-content: space-between;
       padding: 16px 0;
+      border-top: 1px solid #c7c8c9;
       p {
         font-size: 18px;
-      }
-    }
-    .btn-view-shopping-cart {
-      background-color: #282727;
-      color: #fff;
-      &:hover {
-        background-color: #fff;
-        color: #282727;
-      }
-    }
-
-    .btn-payment {
-      background-color: #fff;
-      color: #282727;
-      &:hover {
-        background-color: #282727;
-        color: #fff;
       }
     }
   }
@@ -169,15 +153,7 @@
     button {
       width: 100%;
       padding: 8px 10px;
-      border: 1px solid #282727;
       margin-bottom: 16px;
-      border-radius: 4px;
-      background-color: #282727;
-      color: #fff;
-      &:hover {
-        background-color: #fff;
-        color: #282727;
-      }
     }
     p {
       margin-bottom: 0;
@@ -192,10 +168,6 @@
       right: 6px;
       font-size: 28px;
       cursor: pointer;
-    }
-    .subscribe-user,
-    .pass-retrieval {
-      display: none;
     }
   }
 }

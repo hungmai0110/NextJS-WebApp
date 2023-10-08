@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { formatMoney } from "@utils/utils";
 import styles from "@styles/ProductCard.module.scss";
-
+// import cartApi from "../api/cartApi";
 interface ProductDetail {
   id: number;
   name: string;
@@ -15,11 +15,19 @@ interface ProductDetail {
 }
 
 const ProductCard = ({ product }: { product: ProductDetail }) => {
+  // const handleAddToCart = async (product: any) => {
+  //   try {
+  //     // await cartApi.getCarts();
+  //   } catch (error) {
+  //     console.error("Error adding product to cart:", error);
+  //   }
+  // };
+
   return (
     <div className={styles["product-card"]}>
       <div className={styles["product-item"]}>
         <div className={styles["product-image"]}>
-          <Link href={`/products/${product.id}}`}>
+          <Link href={`/products/${product.id}`}>
             <div className={styles["image-hover"]}>
               <img
                 src={product.images[0]}
@@ -36,7 +44,10 @@ const ProductCard = ({ product }: { product: ProductDetail }) => {
           <div className={styles["discount"]}>
             <p>{product.discount}</p>
           </div>
-          <div className={styles["add-to-cart"]}>
+          <div
+            className={styles["add-to-cart"]}
+            // onClick={() => handleAddToCart(product)}
+          >
             <span>
               <i className="fa-solid fa-cart-plus"></i>
             </span>
@@ -51,7 +62,7 @@ const ProductCard = ({ product }: { product: ProductDetail }) => {
               {formatMoney(product.promo_price)}
             </p>
           </div>
-          <button className={styles["btn-buy"]}>Mua ngay</button>
+          <button className={`${styles["btn-buy"]} btn-black`}>Mua ngay</button>
         </div>
       </div>
     </div>
