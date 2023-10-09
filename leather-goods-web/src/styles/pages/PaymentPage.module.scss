@@ -1,0 +1,114 @@
+.payment-page {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 60px;
+  padding: 60px 0;
+  .infor-delivery {
+    span {
+      margin-bottom: 16px;
+      p {
+        margin-left: 16px;
+        color: #ddba76;
+        cursor: pointer;
+      }
+    }
+    .form-fill {
+      padding: 0;
+      li {
+        margin-top: 4px;
+        margin-bottom: 12px;
+        input {
+          width: 100%;
+          border: 1px solid #dcdcdc;
+          padding: 8px 10px;
+          border-radius: 4px;
+        }
+        .email {
+          width: 55%;
+        }
+        .phone {
+          width: 40%;
+        }
+        textarea {
+          width: 100%;
+          min-height: 100px;
+          border: 1px solid #dcdcdc;
+          padding: 8px 10px;
+          resize: none;
+          margin-top: 4px;
+          border-radius: 4px;
+        }
+      }
+    }
+    .pay-now {
+      width: 120px;
+      height: 40px;
+      margin: 0;
+    }
+  }
+  .order-detail {
+    .my-order {
+      border: 1px solid #dcdcdc;
+      margin-top: 36px;
+      p {
+        margin-bottom: 8px;
+      }
+      .my-order-container {
+        margin: 30px;
+        .list-cart-products {
+          .mini-cart {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            padding: 16px 0;
+            .mini-cart-detail {
+              display: flex;
+              justify-content: space-between;
+              .mini-cart-image {
+                margin-right: 16px;
+                width: 100px;
+                height: 100px;
+                border: 1px solid #f4f4f4;
+              }
+              .mini-cart-content {
+                .initial-price {
+                  font-size: 14px;
+                  font-family: 300;
+                  text-decoration: line-through;
+                }
+              }
+            }
+            .count {
+              position: absolute;
+              top: 5px;
+              left: 80px;
+              border-radius: 50%;
+              background-color: #ddba76;
+              color: #fff;
+              width: 30px;
+              height: 30px;
+              p {
+                margin-left: 10px;
+                margin-top: 2px;
+              }
+            }
+          }
+        }
+        .discount-code {
+          display: flex;
+          justify-content: space-between;
+          margin: 24px 0;
+          height: 40px;
+          input {
+            padding-left: 15px;
+            width: 70%;
+          }
+          .btn-apply {
+            padding: 0 8px;
+            width: 25%;
+          }
+        }
+      }
+    }
+  }
+}
