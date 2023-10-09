@@ -1,0 +1,18 @@
+.list-mini-cart {
+  .title {
+    padding: 8px 0;
+    text-align: center;
+    text-transform: uppercase;
+    background-color: #f4f4f4;
+    font-weight: 500;
+  }
+  .list-item {
+    .mini-item {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 10px;
+      margin: 30px 0;
+      cursor: pointer;
+    }
+  }
+}

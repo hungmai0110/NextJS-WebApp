@@ -45,6 +45,12 @@ ul {
   font-weight: 500;
 }
 
+.default-price {
+  font-size: 14px;
+  font-weight: 300;
+  text-decoration: line-through;
+}
+
 /* button */
 button {
   cursor: pointer;
