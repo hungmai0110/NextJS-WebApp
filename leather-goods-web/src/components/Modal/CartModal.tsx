@@ -163,10 +163,14 @@ const CartModal: React.FC<ModalProps> = ({ onClose }) => {
           </div>
           <div className="d-flex justify-content-between">
             <Link href="/shopping-cart">
-              <button className="btn-white">XEM GIỎ HÀNG</button>
+              <button className="btn-white" onClick={onClose}>
+                XEM GIỎ HÀNG
+              </button>
             </Link>
             <Link href="/payment">
-              <button className="btn-black">THANH TOÁN</button>
+              <button className="btn-black" onClick={onClose}>
+                THANH TOÁN
+              </button>
             </Link>
           </div>
         </div>
