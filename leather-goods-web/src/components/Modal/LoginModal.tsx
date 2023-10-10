@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import styles from "@styles/components/modal.module.scss";
+import { ModalProps } from "src/interfaces/modalProps.interface";
 
-interface ModalProps {
-  onClose: () => void;
-}
 const LoginModal: React.FC<ModalProps> = ({ onClose }) => {
   const [isShow, setIsShow] = useState({
     isShowLogin: true,

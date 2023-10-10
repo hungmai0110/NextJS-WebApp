@@ -4,15 +4,12 @@ import Link from "next/link";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CartItem } from "src/interfaces/cartItem.interface";
+import { ModalProps } from "src/interfaces/modalProps.interface";
 import {
   decrementProduct,
   incrementProduct,
   removeToCart,
 } from "src/slices/cartSlice";
-
-interface ModalProps {
-  onClose: () => void;
-}
 
 const CartModal: React.FC<ModalProps> = ({ onClose }) => {
   const cartItems = useSelector((state: any) => state.cart.cartItems);
