@@ -15,8 +15,13 @@ const Header = () => {
   });
   const router = useRouter();
   const trailingSlash = router.pathname;
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const cartItems = useSelector((state: any) => state.cart.cartItems);
   const dispatch = useDispatch();
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   useEffect(() => {
     const cartItemsFromStorage = localStorage.getItem("cartItems");
@@ -46,9 +51,71 @@ const Header = () => {
       </div>
       <div className={styles["header-navbar"]}>
         <div className={`${styles["header-container"]} layout-content`}>
-          <span className={styles["menu-icon"]}>
+          <span className={styles["menu-icon"]} onClick={toggleMenu}>
             <i className="fa-solid fa-bars"></i>
           </span>
+          {isMenuOpen && (
+            <>
+              <span className={styles["close-menu-sm"]} onClick={toggleMenu}>
+                <i className="fa-regular fa-rectangle-xmark"></i>
+              </span>
+              <ul className={styles["list-menu-sm"]}>
+                <li>
+                  <Link
+                    href="/"
+                    className={trailingSlash === "/" ? styles["active-sm"] : ""}
+                    onClick={toggleMenu}
+                  >
+                    TRANG CHỦ
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/about"
+                    className={
+                      trailingSlash === "/about" ? styles["active-sm"] : ""
+                    }
+                    onClick={toggleMenu}
+                  >
+                    GIỚI THIỆU
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/products"
+                    className={`${styles["products"]} ${
+                      trailingSlash === "/products" ? styles["active-sm"] : ""
+                    }`}
+                    onClick={toggleMenu}
+                  >
+                    SẢN PHẨM
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/news"
+                    className={
+                      trailingSlash === "/news" ? styles["active-sm"] : ""
+                    }
+                    onClick={toggleMenu}
+                  >
+                    TIN TỨC
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/contact"
+                    className={
+                      trailingSlash === "/contact" ? styles["active-sm"] : ""
+                    }
+                    onClick={toggleMenu}
+                  >
+                    LIÊN HỆ
+                  </Link>
+                </li>
+              </ul>
+            </>
+          )}
 
           <div className={styles["logo"]}>
             <Link href="/">

@@ -13,10 +13,12 @@ const HomeMoreInfo = () => {
     arrows: false,
     responsive: [
       {
-        breakpoint: 768,
+        breakpoint: 769,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          autoplay: true,
+          autoplaySpeed: 3000,
         },
       },
     ],
@@ -30,6 +32,16 @@ const HomeMoreInfo = () => {
     autoplaySpeed: 3000,
     dots: true,
     arrows: false,
+    responsive: [
+      {
+        breakpoint: 769,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          autoplay: false,
+        },
+      },
+    ],
   };
 
   return (
@@ -37,7 +49,7 @@ const HomeMoreInfo = () => {
       <div className={`${styles["more-infor-container"]} layout-content`}>
         <h2>Bạn có biết?</h2>
         <div className="row">
-          <div className="col-lg-8 col-md-9 col-sm-12">
+          <div className="col-lg-8 col-md-6 col-sm-12">
             <div className="news">
               <div className={styles["news-slider"]}>
                 <Slider {...settingsNews}>
@@ -57,7 +69,7 @@ const HomeMoreInfo = () => {
               </div>
             </div>
           </div>
-          <div className="col-lg-4 col-md-3 col-sm-12">
+          <div className="col-lg-4 col-md-6 col-sm-12">
             <div className={styles["feedback"]}>
               <div className={styles["feedback-slider"]}>
                 <Slider {...settingsFeedBacks}>

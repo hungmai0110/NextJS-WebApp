@@ -163,3 +163,73 @@
     font-size: 18px;
   }
 }
+
+@media (max-width: 768px) {
+  #collection {
+    .collection-container {
+      .image-collection {
+        height: 520px;
+        h3 {
+          font-size: 22px;
+        }
+      }
+    }
+  }
+  .news-item {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 428px) {
+  .products-slider {
+    width: 95%;
+    margin: 0 auto;
+    .card-item {
+      padding: 0 20px;
+    }
+  }
+  #banner {
+    .banner-image {
+      height: 180px;
+      a {
+        .follow {
+          padding: 0 10px;
+        }
+      }
+    }
+  }
+  .promo-products {
+    padding: 40px 0;
+    h2 {
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+  }
+  .best-sell-products {
+    padding: 40px 0;
+    h2 {
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+    .description {
+      font-size: 18px;
+    }
+  }
+  #collection {
+    padding: 40px 0 0 0;
+    .collection-container {
+      flex-direction: column;
+      .image-collection {
+        height: 420px;
+        margin-bottom: 40px;
+      }
+    }
+  }
+  #more-infor {
+    padding-top: 40px;
+    h2 {
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+  }
+}

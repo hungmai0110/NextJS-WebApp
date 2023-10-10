@@ -36,6 +36,14 @@ const HomeListProducts = ({ products }: { products: Product[] }) => {
           slidesToScroll: 1,
         },
       },
+      {
+        breakpoint: 428,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          autoplay:false
+        },
+      },
     ],
   };
 

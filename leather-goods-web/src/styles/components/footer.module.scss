@@ -99,6 +99,12 @@
   }
 }
 
+@media (max-width: 768px) {
+  .footer-container {
+    margin: 0 auto;
+  }
+}
+
 @media (max-width: 576px) {
   .contact,
   .policy,
