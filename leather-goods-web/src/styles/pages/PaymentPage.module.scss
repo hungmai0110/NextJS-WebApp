@@ -78,6 +78,11 @@
                 }
               }
             }
+            .total-money-product {
+              display: flex;
+              align-items: center;
+              color: #dc3545;
+            }
             .count {
               position: absolute;
               top: 5px;
@@ -106,6 +111,31 @@
           .btn-apply {
             padding: 0 8px;
             width: 25%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .payment-page {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 428px) {
+  .payment-page {
+    .order-detail {
+      .my-order {
+        .my-order-container {
+          margin: 20px;
+          .list-cart-products {
+            .mini-cart {
+              .total-money-product {
+                display: none;
+              }
+            }
           }
         }
       }

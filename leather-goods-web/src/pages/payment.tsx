@@ -108,7 +108,7 @@ const PaymentPage = () => {
                         </p>
                       </div>
                     </div>
-                    <p className="text-danger fw-500 d-flex align-items-center">
+                    <p className={styles["total-money-product"]}>
                       {formatMoney(cartItem.promo_price * cartItem.quantity)}
                     </p>
                     <div className={styles["count"]}>
@@ -125,9 +125,9 @@ const PaymentPage = () => {
                 </button>
               </div>
               <hr />
-              <div className="sub-total-money d-flex justify-content-between">
+              <div className="d-flex justify-content-between">
                 <p>Tạm tính</p>
-                <p>{formatMoney(totalMoneyProductsCart)}</p>
+                <p className="fw-500">{formatMoney(totalMoneyProductsCart)}</p>
               </div>
               <div className="fee-transform d-flex justify-content-between">
                 <p>Phí vận chuyển</p>
@@ -136,7 +136,7 @@ const PaymentPage = () => {
               <hr />
               <div className="total-money fs-5 d-flex justify-content-between">
                 <p>Tổng cộng</p>
-                <p className="text-danger tottal-money-final">
+                <p className="text-danger fw-500 tottal-money-final">
                   {formatMoney(totalMoneyProductsCart)}
                 </p>
               </div>

@@ -59,3 +59,31 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .contact-page {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    grid-auto-flow: dense;
+    .contact-us {
+      order: -1;
+    }
+  }
+}
+
+@media (max-width: 428px) {
+  .contact-page {
+    padding: 40px 0;
+    .contact-us {
+      .map-us {
+        iframe {
+          height: 300px !important;
+        }
+      }
+      .contact-us-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+  }
+}

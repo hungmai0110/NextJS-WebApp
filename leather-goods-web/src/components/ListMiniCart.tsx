@@ -39,7 +39,7 @@ const ListMiniCart = () => {
   ];
 
   return (
-    <>
+    <div className={styles["total-list"]}>
       <div className={styles["list-mini-cart"]}>
         <p className={styles["title"]}>Sản phẩm bán chạy</p>
         <div className={styles["list-item"]}>
@@ -79,7 +79,7 @@ const ListMiniCart = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
