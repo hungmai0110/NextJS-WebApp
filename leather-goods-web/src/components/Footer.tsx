@@ -16,26 +16,20 @@ function Footer() {
             <hr />
             <ul className={styles["contact"]}>
               <li>
-                <Link href="#">
-                  <span>
-                    <i className="fa-solid fa-location-arrow"></i>68 Định Công,
-                    Hoàng Mai, Hà Nội
-                  </span>
-                </Link>
+                <span>
+                  <i className="fa-solid fa-location-arrow"></i>68 Định Công,
+                  Hoàng Mai, Hà Nội
+                </span>
               </li>
               <li>
-                <Link href="#">
-                  <span>
-                    <i className="fa-solid fa-envelope"></i> support@lud.vn
-                  </span>
-                </Link>
+                <span>
+                  <i className="fa-solid fa-envelope"></i> support@lud.vn
+                </span>
               </li>
               <li>
-                <Link href="#">
-                  <span>
-                    <i className="fa-solid fa-phone"></i>0966 516 228
-                  </span>
-                </Link>
+                <span>
+                  <i className="fa-solid fa-phone"></i>0966 516 228
+                </span>
               </li>
               <li>
                 <span>

@@ -2,27 +2,15 @@ import React from "react";
 import Link from "next/link";
 import { formatMoney } from "@utils/utils";
 import styles from "@styles/components/ProductCard.module.scss";
-// import cartApi from "../api/cartApi";
-interface ProductDetail {
-  id: number;
-  name: string;
-  images: string[];
-  price: number;
-  promo_price: number;
-  discount: string;
-  type: string;
-  gender: string;
-}
+import { Product } from "src/interfaces/product.interface";
+import { useDispatch } from "react-redux";
+import { addToCart } from "src/slices/cartSlice";
 
-const ProductCard = ({ product }: { product: ProductDetail }) => {
-  // const handleAddToCart = async (product: any) => {
-  //   try {
-  //     // await cartApi.getCarts();
-  //   } catch (error) {
-  //     console.error("Error adding product to cart:", error);
-  //   }
-  // };
-
+const ProductCard = ({ product }: { product: Product }) => {
+  const dispatch = useDispatch();
+  const handleAddToCart = (product: Product) => {
+    dispatch(addToCart(product));
+  };
   return (
     <div className={styles["product-card"]}>
       <div className={styles["product-item"]}>
@@ -46,7 +34,7 @@ const ProductCard = ({ product }: { product: ProductDetail }) => {
           </div>
           <div
             className={styles["add-to-cart"]}
-            // onClick={() => handleAddToCart(product)}
+            onClick={() => handleAddToCart(product)}
           >
             <span>
               <i className="fa-solid fa-cart-plus"></i>
@@ -57,9 +45,9 @@ const ProductCard = ({ product }: { product: ProductDetail }) => {
         <div className={styles["product-content"]}>
           <h3>{product.name}</h3>
           <div className={styles["price"]}>
-            <p>{formatMoney(product.price)}</p>
+            <p>{formatMoney(product.promo_price)}</p>
             <p className={styles["discount-price"]}>
-              {formatMoney(product.promo_price)}
+              {formatMoney(product.price)}
             </p>
           </div>
           <button className={`${styles["btn-buy"]} btn-black`}>Mua ngay</button>

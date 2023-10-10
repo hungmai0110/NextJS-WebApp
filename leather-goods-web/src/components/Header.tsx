@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "@styles/components/header.module.scss";
 import Link from "next/link";
 import { SearchModal, LoginModal, CartModal } from "./Modal";
+import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { initCart } from "src/slices/cartSlice";
+import { categories } from "@utils/categories";
 
 const Header = () => {
   const [showModal, setShowModal] = useState({
@@ -9,10 +13,17 @@ const Header = () => {
     showSearchModal: false,
     showLoginModal: false,
   });
-  const [activeMenuItem, setActiveMenuItem] = useState("home");
-  const handleMenuItemClick = (menuItem: string) => {
-    setActiveMenuItem(menuItem);
-  };
+  const router = useRouter();
+  const trailingSlash = router.pathname;
+  const cartItems = useSelector((state: any) => state.cart.cartItems);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const cartItemsFromStorage = localStorage.getItem("cartItems");
+    if (cartItemsFromStorage) {
+      dispatch(initCart(JSON.parse(cartItemsFromStorage)));
+    }
+  }, [dispatch]);
 
   return (
     <header className={styles["header"]}>
@@ -40,74 +51,42 @@ const Header = () => {
           </span>
 
           <div className={styles["logo"]}>
-            <Link href="/" onClick={() => handleMenuItemClick("home")}>
+            <Link href="/">
               <img src="logo.png" alt="logo" />
             </Link>
           </div>
 
           <ul className={styles["list-menu"]}>
-            <li className={activeMenuItem === "home" ? styles.active : ""}>
-              <Link href="/" onClick={() => handleMenuItemClick("home")}>
-                TRANG CHỦ
-              </Link>
+            <li className={trailingSlash === "/" ? styles.active : ""}>
+              <Link href="/">TRANG CHỦ</Link>
             </li>
-            <li className={activeMenuItem === "about" ? styles.active : ""}>
-              <Link href="/about" onClick={() => handleMenuItemClick("about")}>
-                GIỚI THIỆU
-              </Link>
+            <li className={trailingSlash === "/about" ? styles.active : ""}>
+              <Link href="/about">GIỚI THIỆU</Link>
             </li>
             <li
               className={`${styles["products"]} ${
-                activeMenuItem === "products" ? styles.active : ""
+                trailingSlash === "/products" ? styles.active : ""
               }`}
             >
-              <Link
-                href="/products"
-                onClick={() => handleMenuItemClick("products")}
-              >
+              <Link href="/products">
                 SẢN PHẨM
                 <span>
                   <i className="fa-solid fa-caret-down"></i>
                 </span>
               </Link>
               <ul className={styles["type-products"]}>
-                <li>
-                  <a href="./main-page/shop.html#vidanam">Ví Da Nam</a>
-                </li>
-                <li>
-                  <a href="./main-page/shop.html#vidanu">Ví Da Nữ</a>
-                </li>
-                <li>
-                  <a href="./main-page/shop.html#daydadongho">Dây Da Đồng Hồ</a>
-                </li>
-                <li>
-                  <a href="./main-page/shop.html#tuidacapda">Túi Da - Cặp Da</a>
-                </li>
-                <li>
-                  <a href="./main-page/shop.html#thatlung">Thắt Lưng</a>
-                </li>
-                <li>
-                  <a href="./main-page/shop.html#phukien">Phụ Kiện</a>
-                </li>
-                <li>
-                  <a href="./main-page/shop.html#cacloaibaoda">
-                    Các Loại Bao Da
-                  </a>
-                </li>
+                {categories.map((c) => (
+                  <li key={c.id}>
+                    <a href={`/products?category=${c.id}`}>{c.title}</a>
+                  </li>
+                ))}
               </ul>
             </li>
-            <li className={activeMenuItem === "news" ? styles.active : ""}>
-              <Link href="/news" onClick={() => handleMenuItemClick("news")}>
-                TIN TỨC
-              </Link>
+            <li className={trailingSlash === "/news" ? styles.active : ""}>
+              <Link href="/news">TIN TỨC</Link>
             </li>
-            <li className={activeMenuItem === "contact" ? styles.active : ""}>
-              <Link
-                href="/contact"
-                onClick={() => handleMenuItemClick("contact")}
-              >
-                LIÊN HỆ
-              </Link>
+            <li className={trailingSlash === "/contact" ? styles.active : ""}>
+              <Link href="/contact">LIÊN HỆ</Link>
             </li>
           </ul>
 
@@ -146,7 +125,7 @@ const Header = () => {
                 <i className="fa-solid fa-cart-shopping"></i>
               </span>
               <span className={styles["cart-count"]}>
-                <p>2</p>
+                <p>{cartItems.length}</p>
               </span>
             </div>
           </div>
