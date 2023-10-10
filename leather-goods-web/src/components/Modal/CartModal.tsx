@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import { formatMoney } from "@utils/utils";
 import styles from "@styles/components/modal.module.scss";
+import { formatMoney } from "@utils/utils";
+import Link from "next/link";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CartItem } from "src/interfaces/cartItem.interface";
-import { decrementProduct, incrementProduct } from "src/slices/cartSlice";
+import {
+  decrementProduct,
+  incrementProduct,
+  removeToCart,
+} from "src/slices/cartSlice";
 
 interface ModalProps {
   onClose: () => void;
@@ -15,7 +19,7 @@ const CartModal: React.FC<ModalProps> = ({ onClose }) => {
   const dispatch = useDispatch();
 
   const totalMoneyProductsCart = cartItems.reduce((total: any, p: any) => {
-    return total + p.price * 1;
+    return total + p.promo_price * p.quantity;
   }, 0);
 
   const handleIncrement = (productId: number) => {
@@ -26,15 +30,22 @@ const CartModal: React.FC<ModalProps> = ({ onClose }) => {
     dispatch(decrementProduct(productId));
   };
 
+  const handleDeleteCart = (productId: number) => {
+    dispatch(removeToCart(productId));
+  };
+
   return (
     <>
       <div id="overlay-screen" onClick={onClose}></div>
       <div id={styles["cart-modal"]}>
         <div className={styles["mini-cart-container"]}>
           <h5 className="text-center">GIỎ HÀNG</h5>
-          <p className={`${styles["message"]} fst-italic`}>
-            Không có sản phẩm trong giỏ hàng
-          </p>
+          {cartItems.length === 0 && (
+            <p className="text-center fst-italic">
+              Không có sản phẩm trong giỏ hàng
+            </p>
+          )}
+
           <span className={styles["close-pop-up"]} onClick={onClose}>
             <i className="fa-solid fa-circle-xmark"></i>
           </span>
@@ -46,7 +57,7 @@ const CartModal: React.FC<ModalProps> = ({ onClose }) => {
                 <div className={styles["mini-cart-product"]}>
                   <div className="d-flex">
                     <div className={styles["mini-cart-product-image"]}>
-                      <img src={cartItem.images[1]} alt="bao da ip 7" />
+                      <img src={cartItem.images[0]} alt="bao da ip 7" />
                     </div>
                     <div className={styles["mini-cart-product-content"]}>
                       <p className="mb-2">{cartItem.name}</p>
@@ -71,7 +82,10 @@ const CartModal: React.FC<ModalProps> = ({ onClose }) => {
                           </span>
                         </div>
                       </div>
-                      <span className={styles["delete-product"]}>
+                      <span
+                        className={styles["delete-product"]}
+                        onClick={() => handleDeleteCart(cartItem.id)}
+                      >
                         <i className="fa-solid fa-xmark"></i>
                       </span>
                     </div>

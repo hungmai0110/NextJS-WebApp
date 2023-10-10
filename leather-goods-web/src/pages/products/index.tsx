@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import style from "@styles/pages/ProductsPage.module.scss";
 import ProductCard from "@components/ProductCard";
+import styles from "@styles/pages/ProductsPage.module.scss";
+import { categories } from "@utils/categories";
+import { priceRanges } from "@utils/priceRanges";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import productApi from "src/api/productApi";
 import { Product } from "src/interfaces/product.interface";
-import { categories } from "@utils/categories";
-import { useRouter } from "next/router";
-import { priceRanges } from "@utils/priceRanges";
 
 const ProductsPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -91,13 +91,17 @@ const ProductsPage = () => {
         const res: Product[] = await productApi.get();
         setProducts(res);
 
-        // Kiểm tra xem có tham số category không
         const { category } = router.query;
+        const { gender } = router.query;
         if (category) {
           setSelectedCategory(category as string);
           applyCategoryFilter(category as string);
+        } else if (gender) {
+          const result = res.filter((product: Product) => {
+            return product.gender === gender;
+          });
+          setFilteredProducts(result);
         } else {
-          // Nếu không có tham số category, hiển thị tất cả sản phẩm
           setFilteredProducts(res);
         }
       } catch (error) {
@@ -109,14 +113,14 @@ const ProductsPage = () => {
   }, [router]);
 
   return (
-    <div className={style["products-page"]}>
-      <div className={`${style["container"]} layout-content`}>
-        <div className={style["filter-checkbox"]}>
-          <div className={style["filter-checkbox__item"]}>
-            <div className={style["title"]}>
+    <div className={styles["products-page"]}>
+      <div className={`${styles["container"]} layout-content`}>
+        <div className={styles["filter-checkbox"]}>
+          <div className={styles["filter-checkbox__item"]}>
+            <div className={styles["title"]}>
               <p>Danh mục sản phẩm</p>
             </div>
-            <div className={style["list-filter"]}>
+            <div className={styles["list-filter"]}>
               <form>
                 {categories.map((c) => (
                   <div key={c.id}>
@@ -135,11 +139,11 @@ const ProductsPage = () => {
               </form>
             </div>
           </div>
-          <div className={style["filter-checkbox__item"]}>
-            <div className={style["title"]}>
+          <div className={styles["filter-checkbox__item"]}>
+            <div className={styles["title"]}>
               <p>Lọc giá</p>
             </div>
-            <div className={style["list-filter"]}>
+            <div className={styles["list-filter"]}>
               <form>
                 {priceRanges.map((r) => (
                   <div key={r.id}>
@@ -158,8 +162,8 @@ const ProductsPage = () => {
             </div>
           </div>
         </div>
-        <div className={style["filter-result"]}>
-          <div className={style["result-title"]}>
+        <div className={styles["filter-result"]}>
+          <div className={styles["result-title"]}>
             <h3>Danh sách sản phẩm</h3>
             <select value={selectedFilter} onChange={handleFilterChange}>
               <option value="">Chọn bộ lọc:</option>
@@ -168,7 +172,7 @@ const ProductsPage = () => {
               <option value="3">Sắp xếp theo giá giảm dần</option>
             </select>
           </div>
-          <div className={style["list-products"]}>
+          <div className={styles["list-products"]}>
             {filteredProducts.map((product: Product) => (
               <ProductCard key={product.id} product={product} />
             ))}

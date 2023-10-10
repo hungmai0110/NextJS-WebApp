@@ -6,7 +6,7 @@ const HomeCollection = () => {
     <div id={styles["collection"]}>
       <div className={`${styles["collection-container"]} layout-content`}>
         <div className={styles["col"]}>
-          <a href="./main-page/shop.html#vidanu">
+          <a href="/products?gender=female">
             <div className={styles["image-collection"]}>
               <img src="femaleCollection.jpg" alt="nu" />
               <h3>BỘ SƯU TẬP DÀNH CHO NỮ</h3>
@@ -15,7 +15,7 @@ const HomeCollection = () => {
           </a>
         </div>
         <div className={styles["col"]}>
-          <a href="./main-page/shop.html#vidanam">
+          <a href="/products?gender=male">
             <div className={styles["image-collection"]}>
               <img src="maleCollection.webp" alt="nam" />
               <h3>BỘ SƯU TẬP DÀNH CHO NAM</h3>

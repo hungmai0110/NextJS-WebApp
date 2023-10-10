@@ -3,7 +3,11 @@ import { formatMoney } from "@utils/utils";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { CartItem } from "src/interfaces/cartItem.interface";
-import { decrementProduct, incrementProduct } from "src/slices/cartSlice";
+import {
+  decrementProduct,
+  incrementProduct,
+  removeToCart,
+} from "src/slices/cartSlice";
 
 const ShoppingCartPage = () => {
   const cartItems = useSelector((state: any) => state.cart.cartItems);
@@ -24,6 +28,10 @@ const ShoppingCartPage = () => {
     dispatch(decrementProduct(productId));
   };
 
+  const handleDeleteCart = (productId: number) => {
+    dispatch(removeToCart(productId));
+  };
+
   return (
     <div className="container">
       <div className={styles["shopping-cart"]}>
@@ -35,6 +43,11 @@ const ShoppingCartPage = () => {
               <p className="text-danger fw-bold">{cartItems.length}</p> sản phẩm
             </span>
           </div>
+          {cartItems.length === 0 && (
+            <p className="text-center fst-italic">
+              Không có sản phẩm trong giỏ hàng
+            </p>
+          )}
           <div className={styles["list-cart-items"]}>
             {cartItems.map((cartItem: CartItem) => (
               <div key={cartItem.id} className={styles["cart-item"]}>
@@ -46,7 +59,7 @@ const ShoppingCartPage = () => {
                     <p>{cartItem.name}</p>
                     <p>{formatMoney(cartItem.price)}</p>
                     <p>{formatMoney(cartItem.promo_price)}</p>
-                    <span>
+                    <span onClick={() => handleDeleteCart(cartItem.id)}>
                       <i className="fa-solid fa-trash-can"></i>
                     </span>
                   </div>

@@ -1,16 +1,24 @@
-import React from "react";
-import Link from "next/link";
-import { formatMoney } from "@utils/utils";
 import styles from "@styles/components/ProductCard.module.scss";
-import { Product } from "src/interfaces/product.interface";
+import { formatMoney } from "@utils/utils";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
+import { Product } from "src/interfaces/product.interface";
 import { addToCart } from "src/slices/cartSlice";
 
 const ProductCard = ({ product }: { product: Product }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
+
   const handleAddToCart = (product: Product) => {
     dispatch(addToCart(product));
   };
+
+  const handleClickBuy = (product: Product) => {
+    dispatch(addToCart(product));
+    router.push("/payment");
+  };
+
   return (
     <div className={styles["product-card"]}>
       <div className={styles["product-item"]}>
@@ -50,7 +58,12 @@ const ProductCard = ({ product }: { product: Product }) => {
               {formatMoney(product.price)}
             </p>
           </div>
-          <button className={`${styles["btn-buy"]} btn-black`}>Mua ngay</button>
+          <button
+            className={`${styles["btn-buy"]} btn-black`}
+            onClick={() => handleClickBuy(product)}
+          >
+            Mua ngay
+          </button>
         </div>
       </div>
     </div>

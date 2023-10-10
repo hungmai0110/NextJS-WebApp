@@ -1,35 +1,40 @@
-import React from "react";
-import Link from "next/link";
-import style from "@styles/pages/PaymentPage.module.scss";
+import styles from "@styles/pages/PaymentPage.module.scss";
 import { formatMoney } from "@utils/utils";
+import Link from "next/link";
 import { useSelector } from "react-redux";
 import { CartItem } from "src/interfaces/cartItem.interface";
 
 const PaymentPage = () => {
   const cartItems = useSelector((state: any) => state.cart.cartItems);
+  const totalMoneyProductsCart = cartItems.reduce(
+    (total: number, p: CartItem) => {
+      return total + p.promo_price * p.quantity;
+    },
+    0
+  );
 
   return (
     <div className="container">
-      <div className={style["payment-page"]}>
-        <div className={style["infor-delivery"]}>
+      <div className={styles["payment-page"]}>
+        <div className={styles["infor-delivery"]}>
           <h5>THÔNG TIN GIAO HÀNG</h5>
           <span>
             Bạn đã có tài khoản chưa?
             <p className="d-inline-block">Đăng nhập</p>
           </span>
-          <ul className={style["form-fill"]}>
+          <ul className={styles["form-fill"]}>
             <li>
               <input type="text" placeholder="Họ và tên" />
             </li>
             <li className="d-flex justify-content-between">
               <input
                 type="email"
-                className={style["email"]}
+                className={styles["email"]}
                 placeholder="Email"
               />
               <input
                 type="text"
-                className={style["phone"]}
+                className={styles["phone"]}
                 placeholder="Số điện thoại"
               />
             </li>
@@ -72,25 +77,30 @@ const PaymentPage = () => {
                 hàng
               </span>
             </Link>
-            <button className={`${style["pay-now"]} btn-black`}>
+            <button className={`${styles["pay-now"]} btn-black`}>
               ĐẶT HÀNG
             </button>
           </div>
         </div>
-        <div className={style["order-detail"]}>
+        <div className={styles["order-detail"]}>
           <h5 className="text-center">ĐƠN HÀNG CỦA BẠN</h5>
-          <div className={style["my-order"]}>
-            <div className={style["my-order-container"]}>
-              <div className={style["list-cart-products"]}>
+          <div className={styles["my-order"]}>
+            <div className={styles["my-order-container"]}>
+              {cartItems.length === 0 && (
+                <p className="text-center fst-italic">
+                  Không có sản phẩm trong giỏ hàng
+                </p>
+              )}
+              <div className={styles["list-cart-products"]}>
                 {cartItems.map((cartItem: CartItem) => (
-                  <div key={cartItem.id} className={style["mini-cart"]}>
-                    <div className={style["mini-cart-detail"]}>
-                      <div className={style["mini-cart-image"]}>
+                  <div key={cartItem.id} className={styles["mini-cart"]}>
+                    <div className={styles["mini-cart-detail"]}>
+                      <div className={styles["mini-cart-image"]}>
                         <img src={cartItem.images[0]} alt="img" />
                       </div>
-                      <div className={style["mini-cart-content"]}>
-                        <p className="mb-1 fw-500">Ví Cầm Tay Da Bò</p>
-                        <p className={style["initial-price"]}>
+                      <div className={styles["mini-cart-content"]}>
+                        <p className="mb-1 fw-500">{cartItem.name}</p>
+                        <p className={styles["initial-price"]}>
                           {formatMoney(cartItem.price)}
                         </p>
                         <p className="promo-price">
@@ -101,23 +111,23 @@ const PaymentPage = () => {
                     <p className="text-danger fw-500 d-flex align-items-center">
                       {formatMoney(cartItem.promo_price * cartItem.quantity)}
                     </p>
-                    <div className={style["count"]}>
+                    <div className={styles["count"]}>
                       <p>{cartItem.quantity}</p>
                     </div>
                   </div>
                 ))}
                 <hr />
               </div>
-              <div className={style["discount-code"]}>
+              <div className={styles["discount-code"]}>
                 <input type="text" placeholder="Mã giảm giá (nếu có)" />
-                <button className={`${style["btn-apply"]} btn-black`}>
+                <button className={`${styles["btn-apply"]} btn-black`}>
                   SỬ DỤNG
                 </button>
               </div>
               <hr />
               <div className="sub-total-money d-flex justify-content-between">
                 <p>Tạm tính</p>
-                <p>3.000.000 VNĐ</p>
+                <p>{formatMoney(totalMoneyProductsCart)}</p>
               </div>
               <div className="fee-transform d-flex justify-content-between">
                 <p>Phí vận chuyển</p>
@@ -126,7 +136,9 @@ const PaymentPage = () => {
               <hr />
               <div className="total-money fs-5 d-flex justify-content-between">
                 <p>Tổng cộng</p>
-                <p className="text-danger tottal-money-final">3.000.000 VNĐ</p>
+                <p className="text-danger tottal-money-final">
+                  {formatMoney(totalMoneyProductsCart)}
+                </p>
               </div>
             </div>
           </div>
