@@ -7,4 +7,5 @@ export interface Product {
   discount: string;
   type: string;
   gender: string;
+  tag: string;
 }

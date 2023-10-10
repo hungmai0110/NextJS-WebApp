@@ -13,7 +13,6 @@ const ProductsPage = () => {
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const router = useRouter();
   const [selectedCategory, setSelectedCategory] = useState("");
-  console.log(selectedFilter);
 
   // Lọc sản phẩm theo category
   const applyCategoryFilter = (category: string) => {
