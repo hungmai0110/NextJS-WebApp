@@ -8,11 +8,24 @@ import productApi from "src/api/productApi";
 import { Product } from "src/interfaces/product.interface";
 
 const ProductsPage = () => {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [selectedFilter, setSelectedFilter] = useState("");
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const router = useRouter();
+  const [products, setProducts] = useState<Product[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+
+  const [selectedFilter, setSelectedFilter] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedPrice, setSelectedPrice] = useState("");
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 6;
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = filteredProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
 
   // Lọc sản phẩm theo category
   const applyCategoryFilter = (category: string) => {
@@ -38,6 +51,7 @@ const ProductsPage = () => {
   // Lọc sản phẩm theo giá
   const handlePriceChange = (event: any) => {
     const selectedPrice = event.target.value;
+    setSelectedPrice(selectedPrice);
     let minPrice = 0;
     let maxPrice = Infinity;
 
@@ -73,16 +87,53 @@ const ProductsPage = () => {
       setFilteredProducts(sortedProducts);
     } else if (selectedValue === "2") {
       // Sắp xếp theo giá tăng dần
-      const sortedProducts = [...products].sort((a, b) => a.price - b.price);
+      const sortedProducts = [...products].sort(
+        (a, b) => a.promo_price - b.promo_price
+      );
       setFilteredProducts(sortedProducts);
     } else if (selectedValue === "3") {
       // Sắp xếp theo giá giảm dần
-      const sortedProducts = [...products].sort((a, b) => b.price - a.price);
+      const sortedProducts = [...products].sort(
+        (a, b) => b.promo_price - a.promo_price
+      );
       setFilteredProducts(sortedProducts);
     } else {
       // Hiển thị danh sách sản phẩm ban đầu
       setFilteredProducts(products);
     }
+  };
+
+  // Phân trang
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const renderPageNumbers = () => {
+    const pageNumbers = [];
+    for (let i = 1; i <= totalPages; i++) {
+      pageNumbers.push(
+        <span
+          key={i}
+          onClick={() => setCurrentPage(i)}
+          className={
+            currentPage === i
+              ? `${styles.active} ${styles["page-number"]}`
+              : styles["page-number"]
+          }
+        >
+          {i}
+        </span>
+      );
+    }
+    return pageNumbers;
   };
 
   useEffect(() => {
@@ -171,11 +222,51 @@ const ProductsPage = () => {
               <option value="2">Sắp xếp theo giá tăng dần</option>
               <option value="3">Sắp xếp theo giá giảm dần</option>
             </select>
+            <select
+              className={styles["select-sm"]}
+              value={selectedCategory}
+              onChange={handleCategoryChange}
+            >
+              <option value="">Danh sách sản phẩm:</option>
+              {categories.map((c) => (
+                <option key={c.id} value={c.id}>
+                  {c.title}
+                </option>
+              ))}
+            </select>
+            <select
+              className={styles["select-sm"]}
+              value={selectedPrice}
+              onChange={handlePriceChange}
+            >
+              <option value="">Lọc giá:</option>
+              {priceRanges.map((r) => (
+                <option key={r.value} value={r.value}>
+                  {r.title}
+                </option>
+              ))}
+            </select>
           </div>
           <div className={styles["list-products"]}>
-            {filteredProducts.map((product: Product) => (
+            {currentProducts.map((product: Product) => (
               <ProductCard key={product.id} product={product} />
             ))}
+          </div>
+          <div className={styles["pagination"]}>
+            <button
+              className="me-2"
+              onClick={handlePrevPage}
+              disabled={currentPage === 1}
+            >
+              <i className="fa-solid fa-angles-left"></i>
+            </button>
+            <div className={styles["list-page"]}>{renderPageNumbers()}</div>
+            <button
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+            >
+              <i className="fa-solid fa-angles-right"></i>
+            </button>
           </div>
         </div>
       </div>
