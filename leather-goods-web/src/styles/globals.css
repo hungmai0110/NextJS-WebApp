@@ -51,6 +51,12 @@ ul {
   text-decoration: line-through;
 }
 
+.error-message {
+  color: #dc3545;
+  font-style: italic;
+  font-size: 14px;
+}
+
 /* button */
 button {
   cursor: pointer;

@@ -1,8 +1,32 @@
 import React from "react";
 import styles from "@styles/pages/ContactPage.module.scss";
 import ListMiniCart from "@components/ListMiniCart";
+import * as Yup from "yup";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 
 const contact = () => {
+  const validationSchema = Yup.object().shape({
+    contactForName: Yup.string().required("Họ và tên không được để trống"),
+    contactForPhone: Yup.string().required("Số điện thoại không được để trống"),
+    contactForEmail: Yup.string()
+      .email("Email không hợp lệ")
+      .required("Email không được để trống"),
+    Notes: Yup.string().required("Lời nhắn không được để trống"),
+  });
+
+  const initialValues = {
+    contactForName: "",
+    contactForPhone: "",
+    contactForEmail: "",
+    Notes: "",
+  };
+
+  const handleSubmit = () => {
+    alert(
+      "Chúng tôi đã nhận được thắc mắc của quý khách và sẽ phản hồi lại sớm nhất. Xin cảm ơn!!!"
+    );
+  };
+
   return (
     <div className="container">
       <div className={styles["contact-page"]}>
@@ -21,30 +45,78 @@ const contact = () => {
             />
           </div>
           <div className={styles["contact-us-container"]}>
-            <div className={styles["send-comments"]}>
-              <h5>GỬI THẮC MẮC CHO CHÚNG TÔI</h5>
-              <ul className={styles["form-fill"]}>
-                <li>
-                  <label htmlFor="contactForName">Họ và tên</label>
-                  <input type="text" placeholder="Nhập tên của bạn" />
-                </li>
-                <li>
-                  <label htmlFor="contactForPhone">Số điện thoại</label>
-                  <input type="text" placeholder="Nhập số điện thoại của bạn" />
-                </li>
-                <li>
-                  <label htmlFor="contactForEmail">Email</label>
-                  <input type="email" placeholder="Nhập email của bạn" />
-                </li>
-                <li>
-                  <label htmlFor="Notes">Lời nhắn</label>
-                  <textarea placeholder="Nội dung..."></textarea>
-                </li>
-              </ul>
-              <button className={`${styles["send-us"]} btn-black`}>
-                GỬI CHO CHÚNG TÔI
-              </button>
-            </div>
+            <Formik
+              initialValues={initialValues}
+              validationSchema={validationSchema}
+              onSubmit={handleSubmit}
+            >
+              <Form>
+                <div className={styles["send-comments"]}>
+                  <h5>GỬI THẮC MẮC CHO CHÚNG TÔI</h5>
+                  <ul className={styles["form-fill"]}>
+                    <li>
+                      <label htmlFor="contactForName">Họ và tên</label>
+                      <Field
+                        type="text"
+                        name="contactForName"
+                        placeholder="Nhập tên của bạn"
+                      />
+                      <ErrorMessage
+                        name="contactForName"
+                        component="div"
+                        className="error-message"
+                      />
+                    </li>
+                    <li>
+                      <label htmlFor="contactForPhone">Số điện thoại</label>
+                      <Field
+                        type="text"
+                        name="contactForPhone"
+                        placeholder="Nhập số điện thoại của bạn"
+                      />
+                      <ErrorMessage
+                        name="contactForPhone"
+                        component="div"
+                        className="error-message"
+                      />
+                    </li>
+                    <li>
+                      <label htmlFor="contactForEmail">Email</label>
+                      <Field
+                        type="text"
+                        name="contactForEmail"
+                        placeholder="Nhập email của bạn"
+                      />
+                      <ErrorMessage
+                        name="contactForEmail"
+                        component="div"
+                        className="error-message"
+                      />
+                    </li>
+                    <li>
+                      <label htmlFor="Notes">Lời nhắn</label>
+                      <Field
+                        type="text"
+                        name="Notes"
+                        placeholder="Nội dung..."
+                      />
+                      <ErrorMessage
+                        name="Notes"
+                        component="div"
+                        className="error-message"
+                      />
+                    </li>
+                  </ul>
+                  <button
+                    type="submit"
+                    className={`${styles["send-us"]} btn-black`}
+                  >
+                    GỬI CHO CHÚNG TÔI
+                  </button>
+                </div>
+              </Form>
+            </Formik>
+
             <div className={styles["infor-contact"]}>
               <h5>THÔNG TIN LIÊN HỆ</h5>
               <p>
