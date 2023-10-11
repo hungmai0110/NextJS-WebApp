@@ -5,19 +5,16 @@ const cors = require("cors");
 const app = express();
 
 const PORT = process.env.PORT || 8000;
-
-// Đường dẫn đến file db.json
+const CORS_ORIGIN = process.env.CORS_ORIGIN || "http://localhost:3000";
 const dbFilePath = "./db.json";
 
-// Allow requests from http://localhost:3000
 app.use(
   cors({
-    origin: "http://localhost:3000",
-    credentials: true, // Enable credentials (e.g., cookies)
+    origin: CORS_ORIGIN,
+    credentials: true,
   })
 );
 
-// Middleware để đọc file db.json và trả về nó dưới dạng JSON
 app.use((req, res, next) => {
   fs.readFile(dbFilePath, "utf8", (err, data) => {
     if (err) {
@@ -28,7 +25,7 @@ app.use((req, res, next) => {
 
     try {
       const jsonData = JSON.parse(data);
-      req.db = jsonData; // Lưu dữ liệu vào req để có thể sử dụng ở các route khác
+      req.db = jsonData;
       next();
     } catch (error) {
       console.error("Error parsing db.json:", error);
@@ -37,9 +34,22 @@ app.use((req, res, next) => {
   });
 });
 
-// Route để trả về dữ liệu từ db.json
 app.get("/products", (req, res) => {
-  res.json(req.db.products); // Trả về dữ liệu từ db.json
+  res.json(req.db.products);
+});
+
+app.get("/products/:id", (req, res) => {
+  const productId = req.params.id;
+
+  const product = req.db.products.find(
+    (product) => product.id === parseInt(productId)
+  );
+
+  if (product) {
+    res.json(product);
+  } else {
+    res.status(404).send("Product not found");
+  }
 });
 
 app.listen(PORT, () => {
