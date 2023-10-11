@@ -53,16 +53,27 @@ const HomeMoreInfo = () => {
             <div className="news">
               <div className={styles["news-slider"]}>
                 <Slider {...settingsNews}>
-                  <Link href="./sub-page/blog_03.html">
+                  <Link
+                    href={`/news/${encodeURIComponent(
+                      "100+ STT Chúc Người Thân, Người Thương Giáng sinh hay nhất 2022"
+                    )}`}
+                  >
                     <div className={styles["news-item"]}>
-                      <img src="/more_infor/apple_watch.jpg" alt="thiep" />
-                      <p>Hướng dẫn sử dụng sản phẩm da cá sấu tại nhà</p>
+                      <img src="/more_infor/news_1.jpeg" alt="img" />
+                      <p>
+                        100+ STT Chúc Người Thân, Người Thương Giáng sinh hay
+                        nhất 2022
+                      </p>
                     </div>
                   </Link>
-                  <Link href="./sub-page/blog_02.html">
+                  <Link
+                    href={`/news/${encodeURIComponent(
+                      "100+ STT Chúc Người Thân, Người Thương Giáng sinh hay nhất 2022"
+                    )}`}
+                  >
                     <div className={styles["news-item"]}>
                       <img src="/more_infor/bag.jpg" alt="cap da" />
-                      <p>Tìm hiểu các bước làm ra một chiếc cặp da nam</p>
+                      <p>Tìm hiểu các bước làm ra một chiếc cặp da nam sẽ như thế nào?</p>
                     </div>
                   </Link>
                 </Slider>

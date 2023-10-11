@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "@styles/components/ListMiniCart.module.scss";
 import { formatMoney } from "@utils/utils";
+import Link from "next/link";
 
 const ListMiniCart = () => {
   const products: any = [
@@ -61,22 +62,38 @@ const ListMiniCart = () => {
       <div className={styles["list-mini-cart"]}>
         <p className={styles["title"]}>Bài viết mới nhất</p>
         <div className={styles["list-item"]}>
-          <div className={styles["mini-item"]}>
-            <div className={styles["mini-item-image"]}>
-              <img src="/more_infor/apple_watch.jpg" alt="img" />
+          <Link
+            href={`/news/${encodeURIComponent(
+              "100+ STT Chúc Người Thân, Người Thương Giáng sinh hay nhất 2022"
+            )}`}
+          >
+            <div className={styles["mini-item"]}>
+              <div className={styles["mini-item-image"]}>
+                <img src="/more_infor/news_1.jpeg" alt="img" />
+              </div>
+              <div className="mini-item-content">
+                <p>
+                  100+ STT Chúc Người Thân, Người Thương Giáng sinh hay nhất
+                  2022
+                </p>
+              </div>
             </div>
-            <div className="mini-item-content">
-              <p>Hướng dẫn sử dụng sản phẩm da cá sấu tại nhà</p>
+          </Link>
+
+          <Link
+            href={`/news/${encodeURIComponent(
+              "100+ STT Chúc Người Thân, Người Thương Giáng sinh hay nhất 2022"
+            )}`}
+          >
+            <div className={styles["mini-item"]}>
+              <div className={styles["mini-item-image"]}>
+                <img src="/more_infor/bag.jpg" alt="img" />
+              </div>
+              <div className="mini-item-content">
+                <p>Tìm hiểu các bước làm ra một chiếc cặp da nam</p>
+              </div>
             </div>
-          </div>
-          <div className={styles["mini-item"]}>
-            <div className={styles["mini-item-image"]}>
-              <img src="/more_infor/bag.jpg" alt="img" />
-            </div>
-            <div className="mini-item-content">
-              <p>Tìm hiểu các bước làm ra một chiếc cặp da nam</p>
-            </div>
-          </div>
+          </Link>
         </div>
       </div>
     </div>
