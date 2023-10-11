@@ -10,6 +10,10 @@ const productApi = {
     let url = "/products";
     return axiosClient.post(url, data);
   },
+  getProduct(id: string) {
+    let url = `/products/${id}`;
+    return axiosClient.get(url);
+  },
 };
 
 export default productApi;

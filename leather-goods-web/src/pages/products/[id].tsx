@@ -1,48 +1,87 @@
-import React, { useState } from "react";
-import { useRouter } from "next/router";
+import { HomeBestSellProducts } from "@components/Home";
 import styles from "@styles/pages/ProductDetailPage.module.scss";
 import { formatMoney } from "@utils/utils";
 import Link from "next/link";
-import { HomeBestSellProducts } from "@components/Home";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import productApi from "src/api/productApi";
+import { Product } from "src/interfaces/product.interface";
+import {
+  addToCart,
+  decrementProduct,
+  incrementProduct,
+} from "src/slices/cartSlice";
 
 const ProductDetail = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state: any) => state.cart.cartItems);
+
   const { id } = router.query;
-  const [product, setProduct] = useState({
-    id: 1,
-    name: "Ví Kẹp Tiền Da Bò Tiện Lợi - 6352",
-    images: [
-      "https://product.hstatic.net/1000260559/product/vi_kep_tien_da_bo__1__77d2e5f68b9c4217bdccf11f48c6b461_master.jpg",
-      "https://product.hstatic.net/1000260559/product/vi_kep_tien_da_bo__2__29aa101be3194f1ebee136e0e47e43bf_master.jpg",
-      "https://product.hstatic.net/1000260559/product/vi_kep_tien_da_bo__3__c6cd1a054a9746efb1f4683755b2381d_master.jpg",
-      "https://product.hstatic.net/1000260559/product/vi_kep_tien_da_bo__4__df8c081ea9d344cf8b24d5d18ae9fc95_master.jpg",
-    ],
-    price: 500000,
-    promo_price: 350000,
-    discount: "-32%",
-    type: "vidanam",
-    gender: "male",
-  });
+  const [product, setProduct] = useState<Product>();
   const [isShow, setIsShow] = useState({
     isShowDescription: true,
     isShowPolicy: false,
   });
-  const [quantity, setQuantity] = useState(1);
-  const [selectedImage, setSelectedImage] = useState(product.images[0]);
+  const [quantity, setQuantity] = useState(0);
+  const [selectedImage, setSelectedImage] = useState("");
 
   const handleImageClick = (image: string) => {
     setSelectedImage(image);
   };
 
-  const handleIncrement = () => {
-    setQuantity(quantity + 1);
-  };
-
-  const handleDecrement = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
+  const handleIncrement = (productId: number) => {
+    if (quantity === 0) {
+      dispatch(addToCart(product));
+    } else {
+      dispatch(incrementProduct(productId));
     }
   };
+
+  const handleDecrement = (productId: number) => {
+    if (quantity === 0) return;
+    dispatch(decrementProduct(productId));
+  };
+
+  const getProductId = (id: string | undefined | string[]) => {
+    const productId = Array.isArray(id) ? id[0] : id;
+
+    return productId || 0;
+  };
+
+  const getQuantity = () => {
+    const productId = getProductId(id);
+    if (!productId || !cartItems) return;
+    for (const item of cartItems) {
+      if (item.id == productId) {
+        console.log(1);
+        setQuantity(item.quantity);
+        return;
+      }
+    }
+    setQuantity(0);
+  };
+
+  const getProductInfo = async () => {
+    const productId = getProductId(id);
+    if (!productId) return;
+    try {
+      const res: any = await productApi.getProduct(productId);
+      setProduct(res);
+      setSelectedImage(res.images[0]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getProductInfo();
+  }, [id]);
+
+  useEffect(() => {
+    getQuantity();
+  }, [cartItems, id]);
 
   return (
     <>
@@ -52,12 +91,12 @@ const ProductDetail = () => {
             <div className={styles["selected-img"]}>
               <img src={selectedImage} />
               <div className={styles["discount"]}>
-                <p>{product.discount}</p>
+                <p>{product?.discount}</p>
               </div>
               <div className={styles["overlay-img"]}></div>
             </div>
             <div className={styles["img-gallery"]}>
-              {product.images.map((image: string, index) => (
+              {product?.images.map((image: string, index) => (
                 <div
                   key={index}
                   className={styles["img-item"]}
@@ -72,26 +111,26 @@ const ProductDetail = () => {
             </div>
           </div>
           <div className={styles["product-content"]}>
-            <h3>{product.name}</h3>
+            <h3>{product?.name}</h3>
             <div className={styles["product-status"]}>
               <p>Tình trạng:</p>
               <p className="text-danger">Còn hàng</p>
             </div>
             <div className={styles["product-price"]}>
               <p className={`${styles["init-price"]} text-danger`}>
-                {formatMoney(product.price)}
+                {formatMoney(product?.price || 0)}
               </p>
               <p className={styles["promo-price"]}>
-                {formatMoney(product.promo_price)}
+                {formatMoney(product?.promo_price || 0)}
               </p>
               <div className={styles["discount"]}>
-                <p>{product.discount}</p>
+                <p>{product?.discount}</p>
               </div>
             </div>
             <div className={styles["saving-money"]}>
               (Tiết kiệm
               <p className="text-danger ms-1">
-                {formatMoney(product.price - product.promo_price)}
+                {formatMoney(product ? product.price - product.promo_price : 0)}
               </p>
               )
             </div>
@@ -115,7 +154,7 @@ const ProductDetail = () => {
                 <span className="border d-inline-block me-3">
                   <span
                     className={`${styles["btn-minus-count"]} py-1 px-3 border-end d-inline-block fw-bold`}
-                    onClick={handleDecrement}
+                    onClick={() => handleDecrement(product?.id || 0)}
                   >
                     -
                   </span>
@@ -124,7 +163,7 @@ const ProductDetail = () => {
                   </span>
                   <span
                     className={`${styles["btn-plus-count"]} py-1 px-3 border-start d-inline-block fw-bold`}
-                    onClick={handleIncrement}
+                    onClick={() => handleIncrement(product?.id || 0)}
                   >
                     +
                   </span>
