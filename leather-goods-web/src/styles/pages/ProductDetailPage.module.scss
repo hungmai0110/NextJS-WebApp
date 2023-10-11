@@ -140,3 +140,41 @@
     margin: 8px 0;
   }
 }
+
+@media (max-width: 768px) {
+  .product-detail {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    .product-image {
+      .selected-img {
+        .discount {
+          font-size: 22px;
+          padding: 18px;
+          left: -2%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 428px) {
+  .product-detail {
+    .product-image {
+      .selected-img {
+        .discount {
+          font-size: 18px;
+          padding: 6px;
+        }
+      }
+    }
+    .product-content {
+      .add-count {
+        flex-direction: column;
+        margin-top: 16px;
+        .change-count {
+          margin-bottom: 16px;
+        }
+      }
+    }
+  }
+}

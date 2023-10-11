@@ -21,6 +21,9 @@
     height: 35px;
     background-color: #b48e64;
     padding: 6px 50px;
+    .content-sm {
+      display: none;
+    }
     .header-contact {
       display: flex;
       justify-content: space-between;
@@ -185,9 +188,15 @@
 @media (max-width: 428px) {
   .header {
     .header-infor {
-      padding: 6px;
-      .header-contact {
+      justify-content: center;
+      padding: 6px 0;
+      .header-contact,
+      .content-pc {
         display: none;
+      }
+      .content-sm {
+        display: block;
+        font-size: 12px;
       }
     }
     .header-navbar {

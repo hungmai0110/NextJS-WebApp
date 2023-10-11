@@ -33,7 +33,12 @@ const Header = () => {
   return (
     <header className={styles["header"]}>
       <div className={`${styles["header-infor"]} color-white`}>
-        <p>LUD.VN | Chuyên thiết kế & cung cấp các sản phẩm thủ công về Da</p>
+        <p className={styles["content-pc"]}>
+          LUD.VN | Chuyên thiết kế & cung cấp các sản phẩm thủ công về Da
+        </p>
+        <p className={styles["content-sm"]}>
+          LUD.VN | Chuyên thiết kế & cung cấp các sản phẩm thủ công về Da
+        </p>
         <div className={styles["header-contact"]}>
           <div className={styles["phone"]}>
             <span>

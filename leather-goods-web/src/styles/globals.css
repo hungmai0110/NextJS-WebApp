@@ -117,23 +117,3 @@ button {
 
   z-index: 100;
 }
-
-/* 1. Đường dẫn */
-#path {
-  margin-top: 115px;
-  height: 36px;
-  background-color: rgba(220, 220, 220, 0.3);
-  font-size: 14px;
-}
-
-#path i {
-  font-size: 14px;
-}
-
-.path-container {
-  margin-left: 60px;
-}
-
-.path-container p {
-  margin: 6px 0px;
-}
