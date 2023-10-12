@@ -2,6 +2,7 @@ import ProductCard from "@components/ProductCard";
 import styles from "@styles/pages/ProductsPage.module.scss";
 import { categories } from "@utils/categories";
 import { priceRanges } from "@utils/priceRanges";
+import { scrollToTop } from "@utils/utils";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import productApi from "src/api/productApi";
@@ -118,10 +119,6 @@ const ProductsPage = () => {
 
   const handlePageNumber = (i: any) => {
     setCurrentPage(i);
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
   };
 
   const renderPageNumbers = () => {
@@ -170,6 +167,10 @@ const ProductsPage = () => {
 
     getProducts();
   }, [router]);
+
+  useEffect(() => {
+    scrollToTop();
+  }, [currentPage]);
 
   return (
     <div className={styles["products-page"]}>

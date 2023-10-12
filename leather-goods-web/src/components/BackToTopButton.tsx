@@ -1,6 +1,6 @@
-// components/BackToTopButton.js
 import { useState, useEffect } from "react";
 import styles from "@styles/components/BackToTopButton.module.scss";
+import { scrollToTop } from "@utils/utils";
 
 const BackToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -12,13 +12,6 @@ const BackToTopButton = () => {
     } else {
       setIsVisible(false);
     }
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
   };
 
   useEffect(() => {
