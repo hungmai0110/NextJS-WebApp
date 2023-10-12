@@ -116,13 +116,21 @@ const ProductsPage = () => {
     }
   };
 
+  const handlePageNumber = (i: any) => {
+    setCurrentPage(i);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   const renderPageNumbers = () => {
     const pageNumbers = [];
     for (let i = 1; i <= totalPages; i++) {
       pageNumbers.push(
         <span
           key={i}
-          onClick={() => setCurrentPage(i)}
+          onClick={() => handlePageNumber(i)}
           className={
             currentPage === i
               ? `${styles.active} ${styles["page-number"]}`

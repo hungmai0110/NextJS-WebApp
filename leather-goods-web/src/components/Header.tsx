@@ -119,6 +119,7 @@ const Header = () => {
                   </Link>
                 </li>
               </ul>
+              <div id="overlay-screen" onClick={toggleMenu}></div>
             </>
           )}
 
