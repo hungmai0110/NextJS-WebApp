@@ -7,5 +7,5 @@ export interface CartItem {
   discount: string;
   type: string;
   gender: string;
-  quantity: number;
+  quantity?: number;
 }

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import styles from "@styles/components/modal.module.scss";
+import React, { useState } from "react";
 import { ModalProps } from "src/interfaces/modalProps.interface";
 
 const LoginModal: React.FC<ModalProps> = ({ onClose }) => {
@@ -36,8 +36,8 @@ const LoginModal: React.FC<ModalProps> = ({ onClose }) => {
   return (
     <>
       <div id="overlay-screen" onClick={onClose}></div>
-      <div id={styles["user"]}>
-        <div className={styles["user-container"]}>
+      <div className={`${styles["user-modal"]} ${styles["modal"]}`}>
+        <div className={styles["container"]}>
           <span className={styles["close-pop-up"]} onClick={onClose}>
             <i className="fa-solid fa-circle-xmark"></i>
           </span>

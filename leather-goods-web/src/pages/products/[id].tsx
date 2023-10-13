@@ -4,63 +4,58 @@ import { formatMoney } from "@utils/utils";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import productApi from "src/api/productApi";
+import { CartItem } from "src/interfaces/cartItem.interface";
 import { Product } from "src/interfaces/product.interface";
-import {
-  addToCart,
-  decrementProduct,
-  incrementProduct,
-} from "src/slices/cartSlice";
+import { addCartSuccess, addToCart } from "src/slices/cartSlice";
 
 const ProductDetail = () => {
   const router = useRouter();
-  const dispatch = useDispatch();
-  const cartItems = useSelector((state: any) => state.cart.cartItems);
-
   const { id } = router.query;
-  const [product, setProduct] = useState<Product>();
+  const dispatch = useDispatch();
+
+  const [product, setProduct] = useState<CartItem | undefined>(undefined);
+  const [quantity, setQuantity] = useState(1);
+  const [selectedImage, setSelectedImage] = useState("");
+
   const [isShow, setIsShow] = useState({
     isShowDescription: true,
     isShowPolicy: false,
   });
-  const [quantity, setQuantity] = useState(0);
-  const [selectedImage, setSelectedImage] = useState("");
 
   const handleImageClick = (image: string) => {
     setSelectedImage(image);
   };
 
-  const handleIncrement = (productId: number) => {
-    if (quantity === 0) {
-      dispatch(addToCart(product));
-    } else {
-      dispatch(incrementProduct(productId));
+  const handleIncrement = () => {
+    if (product && product.id) {
+      const updatedProduct: CartItem = {
+        ...product,
+        quantity: (product.quantity || 0) + 1,
+      };
+      setProduct(updatedProduct);
+      setQuantity((prevQuantity) => prevQuantity + 1);
     }
   };
 
-  const handleDecrement = (productId: number) => {
-    if (quantity === 0) return;
-    dispatch(decrementProduct(productId));
+  const handleDecrement = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+
+  const handleAddToCart = (product: CartItem | undefined) => {
+    if (product && product.id) {
+      dispatch(addToCart(product));
+      dispatch(addCartSuccess({ isShow: true, id: product.id }));
+    }
   };
 
   const getProductId = (id: string | undefined | string[]) => {
     const productId = Array.isArray(id) ? id[0] : id;
 
     return productId || 0;
-  };
-
-  const getQuantity = () => {
-    const productId = getProductId(id);
-    if (!productId || !cartItems) return;
-    for (const item of cartItems) {
-      if (item.id == productId) {
-        console.log(1);
-        setQuantity(item.quantity);
-        return;
-      }
-    }
-    setQuantity(0);
   };
 
   const getProductInfo = async () => {
@@ -78,10 +73,6 @@ const ProductDetail = () => {
   useEffect(() => {
     getProductInfo();
   }, [id]);
-
-  useEffect(() => {
-    getQuantity();
-  }, [cartItems, id]);
 
   return (
     <>
@@ -154,7 +145,7 @@ const ProductDetail = () => {
                 <span className="border d-inline-block me-3">
                   <span
                     className={`${styles["btn-minus-count"]} py-1 px-3 border-end d-inline-block fw-bold`}
-                    onClick={() => handleDecrement(product?.id || 0)}
+                    onClick={() => handleDecrement()}
                   >
                     -
                   </span>
@@ -163,16 +154,19 @@ const ProductDetail = () => {
                   </span>
                   <span
                     className={`${styles["btn-plus-count"]} py-1 px-3 border-start d-inline-block fw-bold`}
-                    onClick={() => handleIncrement(product?.id || 0)}
+                    onClick={() => handleIncrement()}
                   >
                     +
                   </span>
                 </span>
               </div>
               <div className="d-flex justify-content-between">
-                <Link href="/shopping-cart">
-                  <button className="btn-white me-3">XEM GIỎ HÀNG</button>
-                </Link>
+                <button
+                  className="btn-white me-3"
+                  onClick={() => handleAddToCart(product)}
+                >
+                  THÊM GIỎ HÀNG
+                </button>
                 <Link href="/payment">
                   <button className="btn-black">THANH TOÁN</button>
                 </Link>

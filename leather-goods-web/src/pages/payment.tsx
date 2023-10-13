@@ -8,7 +8,8 @@ const PaymentPage = () => {
   const cartItems = useSelector((state: any) => state.cart.cartItems);
   const totalMoneyProductsCart = cartItems.reduce(
     (total: number, p: CartItem) => {
-      return total + p.promo_price * p.quantity;
+      const itemQuantity = p.quantity ?? 0; 
+      return total + p.promo_price * itemQuantity;
     },
     0
   );
@@ -109,7 +110,9 @@ const PaymentPage = () => {
                       </div>
                     </div>
                     <p className={styles["total-money-product"]}>
-                      {formatMoney(cartItem.promo_price * cartItem.quantity)}
+                      {formatMoney(
+                        (cartItem.quantity ?? 0) * cartItem.promo_price
+                      )}
                     </p>
                     <div className={styles["count"]}>
                       <p>{cartItem.quantity}</p>

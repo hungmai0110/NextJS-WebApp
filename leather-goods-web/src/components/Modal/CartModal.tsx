@@ -34,8 +34,8 @@ const CartModal: React.FC<ModalProps> = ({ onClose }) => {
   return (
     <>
       <div id="overlay-screen" onClick={onClose}></div>
-      <div id={styles["cart-modal"]}>
-        <div className={styles["mini-cart-container"]}>
+      <div className={`${styles["cart-modal"]} ${styles["modal"]}`}>
+        <div className={styles["container"]}>
           <h5 className="text-center">GIỎ HÀNG</h5>
           {cartItems.length === 0 && (
             <p className="text-center fst-italic">

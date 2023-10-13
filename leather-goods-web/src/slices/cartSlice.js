@@ -4,6 +4,7 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState: {
     cartItems: [],
+    isAddCartSuccess: { isShow: false, id: "" },
   },
   reducers: {
     initCart: (state, action) => {
@@ -14,15 +15,25 @@ export const cartSlice = createSlice({
       const product = action.payload;
 
       const index = cartItems.findIndex((p) => p.id === product.id);
-
-      if (index !== -1) {
-        cartItems[index].quantity += 1;
+      if (!product.quantity) {
+        if (index !== -1) {
+          cartItems[index].quantity += 1;
+        } else {
+          cartItems.push({ ...product, quantity: 1 });
+        }
       } else {
-        cartItems.push({ ...product, quantity: 1 });
+        if (index !== -1) {
+          cartItems[index].quantity += product.quantity;
+        } else {
+          cartItems.push({ ...product, quantity: product.quantity });
+        }
       }
 
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
       state.cartItems = cartItems;
+    },
+    addCartSuccess: (state, action) => {
+      state.isAddCartSuccess = action.payload;
     },
     removeToCart: (state, action) => {
       const cartItems = [...state.cartItems];
@@ -69,6 +80,7 @@ export const cartSlice = createSlice({
 });
 
 export const {
+  addCartSuccess,
   addToCart,
   removeToCart,
   incrementProduct,

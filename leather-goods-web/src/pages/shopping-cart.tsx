@@ -15,7 +15,8 @@ const ShoppingCartPage = () => {
 
   const totalMoneyProductsCart = cartItems.reduce(
     (total: number, p: CartItem) => {
-      return total + p.promo_price * p.quantity;
+      const itemQuantity = p.quantity ?? 0;
+      return total + p.promo_price * itemQuantity;
     },
     0
   );
@@ -84,7 +85,7 @@ const ShoppingCartPage = () => {
                   </span>
                 </div>
                 <p className="text-danger">
-                  {formatMoney(cartItem.promo_price * cartItem.quantity)}
+                  {formatMoney((cartItem.quantity ?? 0) * cartItem.promo_price)}
                 </p>
               </div>
             ))}

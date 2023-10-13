@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { Product } from "src/interfaces/product.interface";
-import { addToCart } from "src/slices/cartSlice";
+import { addCartSuccess, addToCart } from "src/slices/cartSlice";
 
 const ProductCard = ({ product }: { product: Product }) => {
   const dispatch = useDispatch();
@@ -12,6 +12,7 @@ const ProductCard = ({ product }: { product: Product }) => {
 
   const handleAddToCart = (product: Product) => {
     dispatch(addToCart(product));
+    dispatch(addCartSuccess({ isShow: true, id: product.id }));
   };
 
   const handleClickBuy = (product: Product) => {

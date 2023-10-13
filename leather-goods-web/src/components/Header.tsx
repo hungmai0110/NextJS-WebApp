@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from "react";
 import styles from "@styles/components/header.module.scss";
+import { categories } from "@utils/categories";
 import Link from "next/link";
-import { SearchModal, LoginModal, CartModal } from "./Modal";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { initCart } from "src/slices/cartSlice";
-import { categories } from "@utils/categories";
+import {
+  AddCartSuccessModal,
+  CartModal,
+  LoginModal,
+  SearchModal,
+} from "./Modal";
 
 const Header = () => {
   const [showModal, setShowModal] = useState({
@@ -17,6 +22,10 @@ const Header = () => {
   const trailingSlash = router.pathname;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const cartItems = useSelector((state: any) => state.cart.cartItems);
+  const isShowSuccess = useSelector(
+    (state: any) => state.cart.isAddCartSuccess.isShow
+  );
+
   const dispatch = useDispatch();
 
   const toggleMenu = () => {
@@ -235,6 +244,7 @@ const Header = () => {
           }
         />
       )}
+      {isShowSuccess && <AddCartSuccessModal />}
     </header>
   );
 };
