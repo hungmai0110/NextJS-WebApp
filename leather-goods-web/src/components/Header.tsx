@@ -13,20 +13,24 @@ import {
 } from "./Modal";
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const trailingSlash = router.pathname;
+
   const [showModal, setShowModal] = useState({
     showCartModal: false,
     showSearchModal: false,
     showLoginModal: false,
   });
-  const router = useRouter();
-  const trailingSlash = router.pathname;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const cartItems = useSelector((state: any) => state.cart.cartItems);
   const isShowSuccess = useSelector(
     (state: any) => state.cart.isAddCartSuccess.isShow
   );
-
-  const dispatch = useDispatch();
+  const isLoading = useSelector(
+    (state: any) => state.loading && state.loading.isLoading
+  );
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -245,6 +249,14 @@ const Header = () => {
         />
       )}
       {isShowSuccess && <AddCartSuccessModal />}
+      {isLoading && (
+        <p className="loading-spinner">
+          <div className="loading-circle"></div>
+          <div className="loading-circle"></div>
+          <div className="loading-circle"></div>
+          <div className="loading-circle"></div>
+        </p>
+      )}
     </header>
   );
 };

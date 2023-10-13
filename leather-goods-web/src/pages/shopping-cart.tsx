@@ -63,9 +63,28 @@ const ShoppingCartPage = () => {
                     <span onClick={() => handleDeleteCart(cartItem.id)}>
                       <i className="fa-solid fa-trash-can"></i>
                     </span>
+                    <div className={styles["change-count-sm"]}>
+                      <span className="border d-inline-block me-3">
+                        <span
+                          className={`${styles["btn-minus-count"]} py-1 px-3 border-end d-inline-block fw-bold`}
+                          onClick={() => handleDecrement(cartItem.id)}
+                        >
+                          -
+                        </span>
+                        <span className="py-1 px-3 d-inline-block fw-bold count">
+                          {cartItem.quantity}
+                        </span>
+                        <span
+                          className={`${styles["btn-plus-count"]} py-1 px-3 border-start d-inline-block fw-bold`}
+                          onClick={() => handleIncrement(cartItem.id)}
+                        >
+                          +
+                        </span>
+                      </span>
+                    </div>
                   </div>
                 </div>
-                <div className={styles["change-count"]}>
+                <div className={styles["change-count-pc"]}>
                   <span className="border d-inline-block me-3">
                     <span
                       className={`${styles["btn-minus-count"]} py-1 px-3 border-end d-inline-block fw-bold`}

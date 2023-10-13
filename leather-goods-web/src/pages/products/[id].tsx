@@ -7,8 +7,8 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import productApi from "src/api/productApi";
 import { CartItem } from "src/interfaces/cartItem.interface";
-import { Product } from "src/interfaces/product.interface";
 import { addCartSuccess, addToCart } from "src/slices/cartSlice";
+import { setLoading } from "src/slices/loadingSlice";
 
 const ProductDetail = () => {
   const router = useRouter();
@@ -45,11 +45,28 @@ const ProductDetail = () => {
     }
   };
 
+  // const handleAddToCart = (product: CartItem | undefined) => {
+  //   if (product && product.id) {
+  //     dispatch(addToCart(product));
+  //     dispatch(addCartSuccess({ isShow: true, id: product.id }));
+  //   }
+  // };
+
   const handleAddToCart = (product: CartItem | undefined) => {
-    if (product && product.id) {
-      dispatch(addToCart(product));
-      dispatch(addCartSuccess({ isShow: true, id: product.id }));
-    }
+    dispatch(setLoading(true));
+
+    setTimeout(() => {
+      try {
+        if (product && product.id) {
+          dispatch(addToCart(product));
+          dispatch(addCartSuccess({ isShow: true, id: product.id }));
+        }
+      } catch (error) {
+        console.error("Error adding to cart:", error);
+      } finally {
+        dispatch(setLoading(false));
+      }
+    }, 1000);
   };
 
   const getProductId = (id: string | undefined | string[]) => {
