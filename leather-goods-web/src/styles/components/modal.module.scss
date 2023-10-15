@@ -167,6 +167,9 @@
       display: grid;
       grid-template-columns: 1fr 2fr;
       gap: 10px;
+      .cart-img {
+        width: 100px;
+      }
     }
   }
 }

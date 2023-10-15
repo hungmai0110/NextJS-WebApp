@@ -113,9 +113,10 @@
 
 @media (max-width: 428px) {
   .shopping-cart {
-    padding: 30px 0 60px;
+    padding: 40px 0;
     gap: 40px;
     .cart-info {
+      padding-top: 0;
       .list-cart-items {
         .cart-item {
           p:last-child {

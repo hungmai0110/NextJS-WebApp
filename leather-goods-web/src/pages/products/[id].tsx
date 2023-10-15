@@ -1,4 +1,5 @@
 import { HomeBestSellProducts } from "@components/Home";
+import Path from "@components/Path";
 import styles from "@styles/pages/ProductDetailPage.module.scss";
 import { formatMoney } from "@utils/utils";
 import Link from "next/link";
@@ -45,13 +46,6 @@ const ProductDetail = () => {
     }
   };
 
-  // const handleAddToCart = (product: CartItem | undefined) => {
-  //   if (product && product.id) {
-  //     dispatch(addToCart(product));
-  //     dispatch(addCartSuccess({ isShow: true, id: product.id }));
-  //   }
-  // };
-
   const handleAddToCart = (product: CartItem | undefined) => {
     dispatch(setLoading(true));
 
@@ -93,6 +87,7 @@ const ProductDetail = () => {
 
   return (
     <>
+      <Path pathName={product?.name || ""} />
       <div className="container">
         <div className={styles["product-detail"]}>
           <div className={styles["product-image"]}>

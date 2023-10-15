@@ -1,3 +1,4 @@
+import Path from "@components/Path";
 import ProductCard from "@components/ProductCard";
 import styles from "@styles/pages/ProductsPage.module.scss";
 import { categories } from "@utils/categories";
@@ -173,113 +174,116 @@ const ProductsPage = () => {
   }, [currentPage]);
 
   return (
-    <div className={styles["products-page"]}>
-      <div className={`${styles["container"]} layout-content`}>
-        <div className={styles["filter-checkbox"]}>
-          <div className={styles["filter-checkbox__item"]}>
-            <div className={styles["title"]}>
-              <p>Danh mục sản phẩm</p>
+    <>
+      <Path pathName="Sản phẩm" />
+      <div className={styles["products-page"]}>
+        <div className={`${styles["container"]} layout-content`}>
+          <div className={styles["filter-checkbox"]}>
+            <div className={styles["filter-checkbox__item"]}>
+              <div className={styles["title"]}>
+                <p>Danh mục sản phẩm</p>
+              </div>
+              <div className={styles["list-filter"]}>
+                <form>
+                  {categories.map((c) => (
+                    <div key={c.id}>
+                      <input
+                        type="radio"
+                        id="vehicle1"
+                        name="product-portfolio"
+                        value={c.id}
+                        onChange={handleCategoryChange}
+                        checked={c.id === selectedCategory}
+                      />
+                      <label>{c.title}</label>
+                      <br />
+                    </div>
+                  ))}
+                </form>
+              </div>
             </div>
-            <div className={styles["list-filter"]}>
-              <form>
+            <div className={styles["filter-checkbox__item"]}>
+              <div className={styles["title"]}>
+                <p>Lọc giá</p>
+              </div>
+              <div className={styles["list-filter"]}>
+                <form>
+                  {priceRanges.map((r) => (
+                    <div key={r.id}>
+                      <input
+                        type="radio"
+                        id={r.id}
+                        name="filter-price"
+                        value={r.value}
+                        onChange={handlePriceChange}
+                      />
+                      <label>{r.title}</label>
+                      <br />
+                    </div>
+                  ))}
+                </form>
+              </div>
+            </div>
+          </div>
+          <div className={styles["filter-result"]}>
+            <div className={styles["result-title"]}>
+              <h3>Danh sách sản phẩm</h3>
+              <select value={selectedFilter} onChange={handleFilterChange}>
+                <option value="">Chọn bộ lọc:</option>
+                <option value="1">Sắp xếp theo tên</option>
+                <option value="2">Sắp xếp theo giá tăng dần</option>
+                <option value="3">Sắp xếp theo giá giảm dần</option>
+              </select>
+              <select
+                className={styles["select-sm"]}
+                value={selectedCategory}
+                onChange={handleCategoryChange}
+              >
+                <option value="">Danh sách sản phẩm:</option>
                 {categories.map((c) => (
-                  <div key={c.id}>
-                    <input
-                      type="radio"
-                      id="vehicle1"
-                      name="product-portfolio"
-                      value={c.id}
-                      onChange={handleCategoryChange}
-                      checked={c.id === selectedCategory}
-                    />
-                    <label>{c.title}</label>
-                    <br />
-                  </div>
+                  <option key={c.id} value={c.id}>
+                    {c.title}
+                  </option>
                 ))}
-              </form>
-            </div>
-          </div>
-          <div className={styles["filter-checkbox__item"]}>
-            <div className={styles["title"]}>
-              <p>Lọc giá</p>
-            </div>
-            <div className={styles["list-filter"]}>
-              <form>
+              </select>
+              <select
+                className={styles["select-sm"]}
+                value={selectedPrice}
+                onChange={handlePriceChange}
+              >
+                <option value="">Lọc giá:</option>
                 {priceRanges.map((r) => (
-                  <div key={r.id}>
-                    <input
-                      type="radio"
-                      id={r.id}
-                      name="filter-price"
-                      value={r.value}
-                      onChange={handlePriceChange}
-                    />
-                    <label>{r.title}</label>
-                    <br />
-                  </div>
+                  <option key={r.value} value={r.value}>
+                    {r.title}
+                  </option>
                 ))}
-              </form>
+              </select>
             </div>
-          </div>
-        </div>
-        <div className={styles["filter-result"]}>
-          <div className={styles["result-title"]}>
-            <h3>Danh sách sản phẩm</h3>
-            <select value={selectedFilter} onChange={handleFilterChange}>
-              <option value="">Chọn bộ lọc:</option>
-              <option value="1">Sắp xếp theo tên</option>
-              <option value="2">Sắp xếp theo giá tăng dần</option>
-              <option value="3">Sắp xếp theo giá giảm dần</option>
-            </select>
-            <select
-              className={styles["select-sm"]}
-              value={selectedCategory}
-              onChange={handleCategoryChange}
-            >
-              <option value="">Danh sách sản phẩm:</option>
-              {categories.map((c) => (
-                <option key={c.id} value={c.id}>
-                  {c.title}
-                </option>
+            <div className={styles["list-products"]}>
+              {currentProducts.map((product: Product) => (
+                <ProductCard key={product.id} product={product} />
               ))}
-            </select>
-            <select
-              className={styles["select-sm"]}
-              value={selectedPrice}
-              onChange={handlePriceChange}
-            >
-              <option value="">Lọc giá:</option>
-              {priceRanges.map((r) => (
-                <option key={r.value} value={r.value}>
-                  {r.title}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className={styles["list-products"]}>
-            {currentProducts.map((product: Product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-          <div className={styles["pagination"]}>
-            <button
-              className="me-2"
-              onClick={handlePrevPage}
-              disabled={currentPage === 1}
-            >
-              <i className="fa-solid fa-angles-left"></i>
-            </button>
-            <div className={styles["list-page"]}>{renderPageNumbers()}</div>
-            <button
-              onClick={handleNextPage}
-              disabled={currentPage === totalPages}
-            >
-              <i className="fa-solid fa-angles-right"></i>
-            </button>
+            </div>
+            <div className={styles["pagination"]}>
+              <button
+                className="me-2"
+                onClick={handlePrevPage}
+                disabled={currentPage === 1}
+              >
+                <i className="fa-solid fa-angles-left"></i>
+              </button>
+              <div className={styles["list-page"]}>{renderPageNumbers()}</div>
+              <button
+                onClick={handleNextPage}
+                disabled={currentPage === totalPages}
+              >
+                <i className="fa-solid fa-angles-right"></i>
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

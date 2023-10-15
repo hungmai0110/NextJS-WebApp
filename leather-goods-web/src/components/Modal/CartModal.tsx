@@ -11,7 +11,7 @@ import {
   removeToCart,
 } from "src/slices/cartSlice";
 
-const CartModal: React.FC<ModalProps> = ({ onClose }) => {
+const CartModal = ({ onClose }: ModalProps) => {
   const cartItems = useSelector((state: any) => state.cart.cartItems);
   const dispatch = useDispatch();
 

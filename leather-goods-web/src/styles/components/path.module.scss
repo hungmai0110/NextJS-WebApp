@@ -1,0 +1,12 @@
+#path {
+  background: #f4f4f4;
+  .path-container {
+    display: flex;
+    align-items: center;
+    height: 35px;
+    font-size: 13px;
+    span {
+      margin: 0 8px;
+    }
+  }
+}
