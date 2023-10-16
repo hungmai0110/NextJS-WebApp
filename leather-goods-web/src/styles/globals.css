@@ -156,3 +156,9 @@ button {
 
   z-index: 100;
 }
+
+/* table on admin page */
+.rounded-large.shadow-small {
+  padding: 0 !important;
+  margin-top: 32px;
+}
