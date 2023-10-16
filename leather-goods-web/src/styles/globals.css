@@ -66,11 +66,12 @@ ul {
   justify-content: center;
   align-items: center;
   height: 100px;
+  z-index: 111;
 }
 
 .loading-circle {
-  width: 10px;
-  height: 10px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   background-color: #ddba76;
   margin: 0 10px;
@@ -106,6 +107,7 @@ button {
   color: #282727;
   border: 1px solid #282727;
   border-radius: 4px;
+  min-width: 100px;
 }
 .btn-white:hover {
   background: #282727;
@@ -117,6 +119,7 @@ button {
   color: #fff;
   border: 1px solid #282727;
   border-radius: 4px;
+  min-width: 100px;
 }
 .btn-black:hover {
   background: none;

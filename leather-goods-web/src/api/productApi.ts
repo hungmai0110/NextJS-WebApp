@@ -6,13 +6,21 @@ const productApi = {
     let url = "/products";
     return axiosClient.get(url);
   },
-  add(data: Product) {
+  add(name: string) {
     let url = "/products";
-    return axiosClient.post(url, data);
+    return axiosClient.post(url, name);
   },
   getProduct(id: string) {
     let url = `/products/${id}`;
     return axiosClient.get(url);
+  },
+  deleteProduct(id: Number) {
+    let url = `/products/${id}`;
+    return axiosClient.delete(url);
+  },
+  editProduct(id: Number) {
+    let url = `/products/${id}`;
+    return axiosClient.put(url);
   },
 };
 

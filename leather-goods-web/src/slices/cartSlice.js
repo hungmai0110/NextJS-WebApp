@@ -5,6 +5,7 @@ export const cartSlice = createSlice({
   initialState: {
     cartItems: [],
     isAddCartSuccess: { isShow: false, id: "" },
+    isDeleteProductSuccess: { isShow: false, confirm: false, id: "" },
   },
   reducers: {
     initCart: (state, action) => {
@@ -34,6 +35,9 @@ export const cartSlice = createSlice({
     },
     addCartSuccess: (state, action) => {
       state.isAddCartSuccess = action.payload;
+    },
+    deleteProductSuccess: (state, action) => {
+      state.isDeleteProductSuccess = action.payload;
     },
     removeToCart: (state, action) => {
       const cartItems = [...state.cartItems];
@@ -81,6 +85,7 @@ export const cartSlice = createSlice({
 
 export const {
   addCartSuccess,
+  deleteProductSuccess,
   addToCart,
   removeToCart,
   incrementProduct,

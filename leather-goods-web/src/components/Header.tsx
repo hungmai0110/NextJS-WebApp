@@ -11,6 +11,7 @@ import {
   LoginModal,
   SearchModal,
 } from "./Modal";
+import DeleteProductSuccessModal from "./Modal/DeleteProductSuccessModal";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -25,8 +26,11 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const cartItems = useSelector((state: any) => state.cart.cartItems);
-  const isShowSuccess = useSelector(
+  const isShowAddCartSuccess = useSelector(
     (state: any) => state.cart.isAddCartSuccess.isShow
+  );
+  const isShowDeleteProductSuccess = useSelector(
+    (state: any) => state.cart.isDeleteProductSuccess.isShow
   );
   const isLoading = useSelector(
     (state: any) => state.loading && state.loading.isLoading
@@ -248,7 +252,8 @@ const Header = () => {
           }
         />
       )}
-      {isShowSuccess && <AddCartSuccessModal />}
+      {isShowAddCartSuccess && <AddCartSuccessModal />}
+      {isShowDeleteProductSuccess && <DeleteProductSuccessModal />}
       {isLoading && (
         <p className="loading-spinner">
           <div className="loading-circle"></div>

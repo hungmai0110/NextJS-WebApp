@@ -9,12 +9,17 @@ import {
 import styles from "@styles/pages/AdminPage.module.scss";
 import { scrollToTop } from "@utils/utils";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import productApi from "src/api/productApi";
 import { Product } from "src/interfaces/product.interface";
+import { deleteProductSuccess } from "src/slices/cartSlice";
 
 const AdminPage = () => {
+  const dispatch = useDispatch();
   const [products, setProducts] = useState<Product[]>([]);
-  const [newProductName, setNewProductName] = useState("");
+  const isConfirmDeleteProduct = useSelector(
+    (state: any) => state.cart.isDeleteProductSuccess.confirm
+  );
 
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 6;
@@ -27,14 +32,9 @@ const AdminPage = () => {
     indexOfLastProduct
   );
 
-  // const handleDeleteProduct = async (id: Number) => {
-  //   try {
-  //     const res: any = await productApi.deleteProduct(id);
-  //     setProducts(res);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const handleOpenModal = (id: any) => {
+    dispatch(deleteProductSuccess({ isShow: true, id: id }));
+  };
 
   const getProducts = async () => {
     try {
@@ -84,7 +84,7 @@ const AdminPage = () => {
 
   useEffect(() => {
     getProducts();
-  }, []);
+  }, [isConfirmDeleteProduct]);
 
   useEffect(() => {
     scrollToTop();
@@ -130,7 +130,7 @@ const AdminPage = () => {
                       </span>
                     </TableCell>
                     <TableCell className="text-center">
-                      <span>
+                      <span onClick={() => handleOpenModal(p.id)}>
                         <i className="fa-solid fa-trash-can"></i>
                       </span>
                     </TableCell>
