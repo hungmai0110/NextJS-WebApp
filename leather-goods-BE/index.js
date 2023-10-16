@@ -52,6 +52,31 @@ app.get("/products/:id", (req, res) => {
   }
 });
 
+app.delete("/products/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const index = req.db.products.findIndex((product) => product.id === id);
+
+  if (index !== -1) {
+    req.db.products.splice(index, 1);
+    saveDataToDb(req.db, res);
+  } else {
+    res.status(404).json({ error: "Product not found" });
+  }
+});
+
+function saveDataToDb(data, res) {
+  const jsonData = JSON.stringify(data, null, 2);
+
+  fs.writeFile(dbFilePath, jsonData, (err) => {
+    if (err) {
+      console.error("Error writing to db.json:", err);
+      res.status(500).send("Internal Server Error");
+    } else {
+      res.json(data.products);
+    }
+  });
+}
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
