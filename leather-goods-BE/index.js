@@ -64,6 +64,10 @@ app.delete("/products/:id", (req, res) => {
   }
 });
 
+app.get("/staffs", (req, res) => {
+  res.json(req.db.staffs);
+});
+
 function saveDataToDb(data, res) {
   const jsonData = JSON.stringify(data, null, 2);
 

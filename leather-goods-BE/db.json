@@ -703,5 +703,15 @@
       "type": "cacloaibaoda",
       "gender": "all"
     }
+  ],
+  "staffs": [
+    {
+      "id": 1,
+      "name": "Bon Bon",
+      "email": "admin@gmail.com",
+      "pass": "123",
+      "image": "http://54.254.120.165:3000/more_infor/avatar_2.jpeg",
+      "role": "admin"
+    }
   ]
 }
