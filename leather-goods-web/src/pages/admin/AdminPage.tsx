@@ -114,17 +114,25 @@ const AdminPage = () => {
                 <TableColumn className={styles["product-name-col"]}>
                   Tên sản phẩm
                 </TableColumn>
-                <TableColumn>Sửa</TableColumn>
+                <TableColumn className={styles["block-border__right"]}>
+                  Sửa
+                </TableColumn>
                 <TableColumn>Xoá</TableColumn>
               </TableHeader>
               <TableBody>
                 {currentProducts.map((p) => (
                   <TableRow key={p.id} className={styles["table-row"]}>
-                    <TableCell className="d-flex justify-content-center">
+                    <TableCell
+                      className={`${styles["block-border__right"]} d-flex justify-content-center`}
+                    >
                       <img src={p.images[0]} alt="img" />
                     </TableCell>
-                    <TableCell>{p.name}</TableCell>
-                    <TableCell className="text-center">
+                    <TableCell className={styles["block-border__right"]}>
+                      {p.name}
+                    </TableCell>
+                    <TableCell
+                      className={`${styles["block-border__right"]} text-center`}
+                    >
                       <span>
                         <i className="fa-regular fa-pen-to-square"></i>
                       </span>
